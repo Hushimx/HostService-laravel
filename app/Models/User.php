@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'hash',
+        'firstName',
+        'lastName',
+        'countryId',
+        'role',
     ];
 
     public function getAuthPassword()

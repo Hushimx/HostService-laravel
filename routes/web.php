@@ -1,12 +1,13 @@
 <?php
 
+use App\Models\City;
 use App\Models\Country;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\Auth\VendorLoginController;
 use App\Http\Controllers\VendorController;
-use App\Models\City;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Auth\VendorLoginController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,13 +84,11 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'vendor']
     ],
 function(){
-    // Route::get('/', function () {
-    //     return view('');
-    // });
-
-    Route::get('/countries', function () {
-        return Country::all();
+    Route::get('/', function () {
+        return view('avendor.dashboard');
     });
+
+    Route::resource('products', ProductController::class);
 
 });
 

@@ -1,11 +1,14 @@
 <?php
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\City;
+use App\Models\Store;
+use App\Models\Product;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Vendor extends Authenticatable
 {
@@ -31,5 +34,11 @@ class Vendor extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    // Define the many-to-many relationship
+    public function stores()
+    {
+        return $this->belongsToMany(Store::class, 'vendor_store');
     }
 }
