@@ -15,10 +15,20 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
+        // DB::table('vendors')->insert([
+        //     'name' => 'mahmoud',
+        //     'email' => 'hguhfdsa@gmail.com',
+        //     'password' => Hash::make('omegalolo1'),
+        //     'phoneNo' => '01202163639',
+        //     'updatedAt' => '2024-12-17 17:38:44.5',
+        //     'address' => 'adasdas adsadasd',
+        //     'cityId' => 1,
+        // ]);
+
         DB::table('vendors')->insert([
-            'name' => 'mahmoud',
-            'email' => 'hguhfdsa@gmail.com',
-            'password' => Hash::make('omegalolo1'),
+            'name' => 'Hashim',
+            'email' => 'hashimmeko6666@gmail.com',
+            'password' => Hash::make('h6368284'),
             'phoneNo' => '01202163639',
             'updatedAt' => '2024-12-17 17:38:44.5',
             'address' => 'adasdas adsadasd',

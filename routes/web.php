@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Auth\VendorLoginController;
+use App\Http\Controllers\VendorController;
 use App\Models\City;
 
 /*
@@ -18,6 +19,16 @@ use App\Models\City;
 |
 */
 
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest' ]
+    ],
+function(){
+    // vendor Authentication
+    Route::get('vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login.form');
+});
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -29,9 +40,11 @@ function(){
     Route::view('/user/password/forget', 'auth/passwords/email')->name('password.forgetpassword');
 
     // vendor Authentication
-    Route::get('vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login.form');
     Route::post('vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
     Route::post('vendor/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
+
+    // Route::resource('vendors', VendorController::class);
+
     // vendor dashboard
     Route::get('/vendor/dashboard', function () {
         return view('avendor.dashboard');
@@ -40,10 +53,6 @@ function(){
     // Global Routes
     Route::get('/', function () {
         return view('welcome');
-    });
-
-    Route::get('/countries', function () {
-        return Country::all();
     });
 
     Route::get('/cities', function () {
@@ -59,7 +68,30 @@ function(){
 });
 
 
+/*
+|--------------------------------------------------------------------------
+| Vendors Web Routes Only Can Access
+|--------------------------------------------------------------------------
+| these routes for vendors can acces only
+|
+|
+*/
 
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'vendor']
+    ],
+function(){
+    // Route::get('/', function () {
+    //     return view('');
+    // });
+
+    Route::get('/countries', function () {
+        return Country::all();
+    });
+
+});
 
 
 
