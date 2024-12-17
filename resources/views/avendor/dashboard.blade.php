@@ -1,5 +1,5 @@
-@extends('admin.dashboard.includes.master')
+@extends('avendor.dashboard.includes.master')
 
 @section('content')
-  @include('admin.dashboard.includes.main-container')
+  @include('avendor.dashboard.includes.main-container')
 @endsection

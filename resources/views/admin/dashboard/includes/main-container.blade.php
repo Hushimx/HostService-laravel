@@ -10,7 +10,7 @@
                         Main Dashboard
                     </h1>
                     <h2 class="h6 font-w500 text-muted mb-0">
-                        Welcome <a class="font-w600" href="javascript:void(0)">{{ Auth::user()->name }}</a>, everything looks great.
+                        Welcome <a class="font-w600" href="javascript:void(0)">{{ Auth::guard('web')->user()->name }}</a>, everything looks great.
                     </h2>
                 </div>
                 <div class="mt-3 mt-sm-0 ml-sm-3">

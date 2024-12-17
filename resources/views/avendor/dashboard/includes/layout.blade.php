@@ -1,3 +1,3 @@
-@include('admin.dashboard.includes.head')
+@include('avendor.dashboard.includes.head')
     @yield('content')
-@include('admin.dashboard.includes.foot')
+@include('avendor.dashboard.includes.foot')

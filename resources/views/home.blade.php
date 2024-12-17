@@ -15,6 +15,11 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    @if(Auth::guard('vendors')->check())
+                        <p>Welcome, {{ Auth::guard('vendors')->user()->name }}</p>
+                    @endif
+
                 </div>
             </div>
         </div>

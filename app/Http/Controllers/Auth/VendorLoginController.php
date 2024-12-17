@@ -25,7 +25,8 @@ class VendorLoginController extends Controller
         $vendor = Vendor::where('email', $request->email)->first();
 
         if ($vendor && Hash::check($request->password, $vendor->password)) {
-            Auth::guard('web')->login($vendor);
+            // Login the vendor using the 'vendors' guard
+            Auth::guard('vendors')->login($vendor);
             return redirect()->intended('/vendor/dashboard');
         }
 
@@ -34,7 +35,7 @@ class VendorLoginController extends Controller
 
     public function logout()
     {
-        Auth::guard('web')->logout();
+        Auth::guard('vendors')->logout();
         return redirect('/');
     }
 }
