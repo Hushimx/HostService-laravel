@@ -20,8 +20,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'hash',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->hash; // Specify the name of your password column
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -29,7 +34,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'hash',
         'remember_token',
     ];
 
@@ -40,6 +45,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'hash' => 'hashed',
     ];
 }
