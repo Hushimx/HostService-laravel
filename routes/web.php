@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/users', function () {
-    return User::all();  // Return users as JSON
 
+
+
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ],
+function(){
+    Auth::routes();
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::view('admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
+    Route::get('/users', function () {
+        return view('page_default');
+    });
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
+
+
+
+
+
+
+
+

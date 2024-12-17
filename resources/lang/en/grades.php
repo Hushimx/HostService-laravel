@@ -1,0 +1,32 @@
+<?php
+
+return [
+
+    'grades' => 'Grades',
+    'table' => 'Table',
+    'add_new_grade' => 'Add New Grade',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'before_delete_alert' => 'Are You Sure You Want To Delete This ?',
+    'no' => 'No',
+    'yes' => 'Yes',
+    'name' => 'Name',
+    'notes' => 'Notes',
+    'action' => 'Action',
+    'edit_grade' => 'Edit Grade',
+    'update' => 'Update',
+    'name_in_arabic' => 'Name In Arabic',
+    'name_in_english' => 'Name In English',
+    'optional_field' => 'optional field no need to fill it',
+    'add_success' => 'A New Grade Created Successfully !',
+    'edit_success' => 'Grade Edit Saved Successfully !',
+    'grade_name' => 'Grade Name',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+    '' => '',
+];
