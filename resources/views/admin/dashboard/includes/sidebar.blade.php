@@ -109,21 +109,21 @@
           </li>
 
           <li class="nav-main-heading">{{ trans('sidebar.school_info') }}</li>
-
+          {{-- in class tag {{ (Route::is('students.index') || Route::is('students.create')) ? 'active' : '' }} --}}
           {{-- ========== side nav beigns from here ========== --}}
           <li class="nav-main-item">
-            <a class="nav-main-link nav-main-link-submenu {{ (Route::is('students.index') || Route::is('students.create')) ? 'active' : '' }}" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
               <i class="nav-main-link-icon fa fa-user-graduate"></i>
               <span class="nav-main-link-name">{{ trans('main_trans.students') }}</span>
             </a>
             <ul class="nav-main-submenu">
               <li class="nav-main-item">
-                <a class="nav-main-link {{ Route::is('students.index') ? 'active' : '' }}" href="{{ route('students.index') }}">
+                <a class="nav-main-link" href="#">
                   <span class="nav-main-link-name">{{ trans('main_trans.students_list') }}</span>
                 </a>
               </li>
               <li class="nav-main-item">
-                <a class="nav-main-link {{ Route::is('students.create') ? 'active' : '' }}" href="{{ route('students.create') }}">
+                <a class="nav-main-link" href="#">
                   <span class="nav-main-link-name">{{ trans('main_trans.add_student') }}</span>
                 </a>
               </li>
@@ -131,49 +131,49 @@
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link {{ Route::is('courses.index') ? 'active' : '' }}" href="{{ route('courses.index') }}">
+            <a class="nav-main-link" href="">
               <i class="nav-main-link-icon fa fa-laptop"></i>
               <span class="nav-main-link-name">{{ trans('courses.manage_courses') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link {{ Route::is('questions.index') ? 'active' : '' }}" href="{{ route('questions.index') }}">
+            <a class="nav-main-link" href="">
               <i class="nav-main-link-icon fa fa-chalkboard-teacher"></i>
               <span class="nav-main-link-name">{{ trans('main_trans.questions_bank') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link {{ Route::is('quizzes.index') ? 'active' : '' }}" href="{{ route('quizzes.index') }}">
+            <a class="nav-main-link" href="">
               <i class="nav-main-link-icon fa fa-question-circle"></i>
               <span class="nav-main-link-name">{{ trans('students.quizzes') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link {{ Route::is('posts.index') ? 'active' : '' }}" href="{{ route('posts.index') }}">
+            <a class="nav-main-link" href="">
               <i class="nav-main-link-icon fa fa-pen"></i>
               <span class="nav-main-link-name">{{ trans('main_trans.posts') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link {{ Route::is('attachments.index') ? 'active' : '' }}" href="{{ route('attachments.index') }}">
+            <a class="nav-main-link" href="">
               <i class="nav-main-link-icon fa fa-paperclip"></i>
               <span class="nav-main-link-name">{{ trans('main_trans.attachments') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('quiz.students') }}">
+            <a class="nav-main-link" href="">
               <i class="nav-main-link-icon fa fa-chalkboard-teacher"></i>
               <span class="nav-main-link-name">{{ trans('main_trans.results') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('frontvideos.index') }}">
+            <a class="nav-main-link" href="">
               <i class="nav-main-link-icon fa fa-play"></i>
               <span class="nav-main-link-name">{{ trans('main_trans.frontVideos') }}</span>
             </a>
@@ -182,7 +182,7 @@
           <li class="nav-main-heading">Others</li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link {{ Route::is('contact.index') ? 'active' : '' }}" href="{{ route('contact.index') }}">
+            <a class="nav-main-link" href="">
               <i class="nav-main-link-icon fa fa-inbox"></i>
               <span class="nav-main-link-name">{{ trans('main_trans.contact_inbox') }}</span>
             </a>

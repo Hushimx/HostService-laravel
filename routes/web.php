@@ -6,7 +6,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Global Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -15,17 +15,17 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-
-
-
-
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ],
 function(){
+    // Authentication
     Auth::routes();
+    Route::view('/user/password/forget', 'auth/passwords/email')->name('password.forgetpassword');
+
+    // Global Routes
     Route::get('/', function () {
         return view('welcome');
     });
