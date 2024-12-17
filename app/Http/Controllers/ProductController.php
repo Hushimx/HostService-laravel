@@ -10,7 +10,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products.index', compact('products'));
+        return view('avendor.pages.products.index', compact('products'));
     }
 
     public function create()
@@ -34,12 +34,12 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        return view('avendor.pages.products.show', compact('product'));
     }
 
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('avendor.pages.products.edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)

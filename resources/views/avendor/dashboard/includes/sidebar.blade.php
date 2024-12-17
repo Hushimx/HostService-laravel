@@ -114,17 +114,17 @@
           <li class="nav-main-item">
             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
               <i class="nav-main-link-icon fa fa-user-graduate"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.students') }}</span>
+              <span class="nav-main-link-name">{{ trans('products.products') }}</span>
             </a>
             <ul class="nav-main-submenu">
               <li class="nav-main-item">
-                <a class="nav-main-link" href="#">
-                  <span class="nav-main-link-name">{{ trans('main_trans.students_list') }}</span>
+                <a class="nav-main-link" href="{{ route('products.index') }}">
+                  <span class="nav-main-link-name">{{ trans('products.products') }}</span>
                 </a>
               </li>
               <li class="nav-main-item">
                 <a class="nav-main-link" href="#">
-                  <span class="nav-main-link-name">{{ trans('main_trans.add_student') }}</span>
+                  <span class="nav-main-link-name">{{ trans('products.add_product') }}</span>
                 </a>
               </li>
             </ul>

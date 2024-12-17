@@ -84,12 +84,9 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'vendor']
     ],
 function(){
-    Route::get('/', function () {
-        return view('avendor.dashboard');
-    });
+    Route::view('/', 'avendor.dashboard');
 
     Route::resource('products', ProductController::class);
-
 });
 
 
