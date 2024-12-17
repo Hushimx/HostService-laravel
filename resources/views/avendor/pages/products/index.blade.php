@@ -131,12 +131,12 @@
                 <td class="font-w600 font-size-sm">{{ $product->name }}</td>
                 <td class="font-w600 font-size-sm">
                   @if ($product->image)
-                    <a href="{{ url('storage/'.$product->image) }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
-                      <img class="img-thumb d-block mx-auto" src="{{ url('storage/'.$product->image) }}" alt="{{ $product->text }}" width="300px">
+                    <a href="{{ $product->image }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
+                      <img class="img-thumb d-block mx-auto" src="{{ $product->image }}" alt="{{ $product->text }}" width="300px">
                     </a>
                   @else
-                    <a href="{{ url('storage/courses_images/no-image.png') }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
-                      <img class="img-thumb d-block mx-auto" src="{{ url('storage/courses_images/no-image.png') }}" alt="{{ $product->name }}" width="300px">
+                    <a href="{{ url('storage/no-image.png') }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
+                      <img class="img-thumb d-block mx-auto" src="{{ url('storage/no-image.png') }}" alt="{{ $product->name }}" width="300px">
                     </a>
                   @endif
                 </td>
@@ -174,7 +174,7 @@
                     </a>
                     <button type="button" class="btn btn-sm btn-danger d-flex align-items-baseline"
                         data-toggle="modal" data-target="#modal-delete-product{{$product->id}}">
-                      <i class="fa fa-times fa-fw mr-1"></i>{{ trans('product.delete') }}
+                      <i class="fa fa-times fa-fw mr-1"></i>{{ trans('products.delete') }}
                     </button>
                   </div>
                 </td>
