@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
-use App\Models\Store;
-use App\Models\Vendor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +14,7 @@ class ProductController extends Controller
     {
         $vendorStores = Auth::guard('vendors')->user()->stores;
         $productCategories = ProductCategory::all();
-        $products = Product::orderBy('createdAt', 'desc')->paginate(5);
+        $products = Product::orderBy('createdAt', 'desc')->paginate(10);
         return view('avendor.pages.products.index', compact('products', 'productCategories', 'vendorStores'));
     }
 
