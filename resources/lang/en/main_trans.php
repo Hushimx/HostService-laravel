@@ -21,11 +21,14 @@ return [
 
   // delivery Orders section
   'delivery-orders' => 'Delivery Orders',
-  '' => '',
-  '' => '',
-  '' => '',
-  '' => '',
-  '' => '',
-  '' => '',
+  'name' => 'Name',
+  'city' => 'City',
+  'hotelName' => 'Hotel Name',
+  'storeSlug' => 'Store Slug',
+  'notes' => 'Notes',
+  'status' => 'Status',
+  'view' => 'View',
+  'clientName' => 'Client Name',
+  'view' => 'View',
 
 ];

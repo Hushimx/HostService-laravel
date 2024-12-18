@@ -17,7 +17,7 @@
       {{ trans('products.manage') }} <small class="font-size-base font-w400 text-muted">{{ trans('products.products') }}</small>
     </x-slot>
     <li class="breadcrumb-item" aria-current="page">
-      <a class="link-fx" href="/">{{ trans('main_trans.Dashboard_page') }}</a>
+      <a class="link-fx" href="{{ route('vendor.dashboard') }}">{{ trans('main_trans.Dashboard_page') }}</a>
     </li>
     <li class="breadcrumb-item">{{ trans('products.manage') }} {{ trans('products.products') }}</li>
   </x-hero>
@@ -215,9 +215,10 @@
                       </div>
                       <div class="block-content font-size-sm">
                         {{-- start form --}}
-                        <form action="{{ route('products.destroy', $product) }}" method="POST">
+                        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                           @csrf
                           @method('DELETE')
+                          <input type="hidden" name="page" value="{{ $products->currentPage() }}">
                           <div class="row">
                             <div class="col-lg-12 col-xl-12">
                               <div class="form-group text-center">

@@ -20,5 +20,6 @@ return [
   'stores' => 'المتاجر',
   'select_store' => 'اختر المتجر',
   'products_info' => 'معلومات المنتج',
-
+  'edit' => 'تعديل',
+  'product' => 'المنتج',
 ];

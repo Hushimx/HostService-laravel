@@ -138,7 +138,7 @@
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link" href="#">
+            <a class="nav-main-link {{ Route::is('deliveryOrders.index') ? 'active' : '' }}" href="{{ route('deliveryOrders.index') }}">
               <i class="nav-main-link-icon fa fa-laptop"></i>
               <span class="nav-main-link-name">{{ trans('main_trans.delivery-orders') }}</span>
             </a>

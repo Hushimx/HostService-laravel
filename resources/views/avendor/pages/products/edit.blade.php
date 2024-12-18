@@ -22,12 +22,12 @@
   <!-- Hero -->
   <x-hero>
     <x-slot name="title">
-      {{ trans('courses.edit') }} <small class="font-size-base font-w400 text-muted">{{ trans('courses.course') }}</small>
+      {{ trans('products.manage') }} <small class="font-size-base font-w400 text-muted">{{ trans('products.products') }}</small>
     </x-slot>
     <li class="breadcrumb-item" aria-current="page">
-      <a class="link-fx" href="/courses">{{ trans('courses.course') }}</a>
+        <a class="link-fx" href="{{ route('vendor.dashboard') }}">{{ trans('main_trans.Dashboard_page') }}</a>
     </li>
-    <li class="breadcrumb-item">{{ trans('courses.edit') }} {{ trans('courses.course') }}</li>
+    <li class="breadcrumb-item">{{ trans('products.edit') }} {{ trans('products.product') }}</li>
   </x-hero>
 
   <!-- Page Content -->

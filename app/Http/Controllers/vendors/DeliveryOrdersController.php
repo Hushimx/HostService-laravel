@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\vendors;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\DeliveryOrder;
+use App\Http\Controllers\Controller;
 
 class DeliveryOrdersController extends Controller
 {
@@ -13,7 +14,8 @@ class DeliveryOrdersController extends Controller
     public function index()
     {
         //
-        return view('avendor.pages.delivery-orders.index');
+        $deliveryOrders = DeliveryOrder::with('city')->paginate(10);
+        return view('avendor.pages.delivery-orders.index', compact('deliveryOrders'));
     }
 
     /**
