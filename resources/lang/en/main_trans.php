@@ -19,4 +19,13 @@ return [
   'login' => 'Login',
   'logout'  => 'Logout',
 
+  // delivery Orders section
+  'delivery-orders' => 'Delivery Orders',
+  '' => '',
+  '' => '',
+  '' => '',
+  '' => '',
+  '' => '',
+  '' => '',
+
 ];
