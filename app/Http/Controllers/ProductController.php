@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         $vendorStores = Auth::guard('vendors')->user()->stores;
         $productCategories = ProductCategory::all();
-        $products = Product::all();
+        $products = Product::orderBy('createdAt', 'desc')->get();
         return view('avendor.pages.products.index', compact('products', 'productCategories', 'vendorStores'));
     }
 
