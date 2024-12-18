@@ -20,12 +20,28 @@ class DeliveryOrderItem extends Model
     }
 
     // realtion - one deliveryOrder many delivery_order_items
-    public function deliveryOrder() {
-        return $this->hasOne(DeliveryOrder::class, 'orderId');
+    public function deliveryOrder()
+    {
+        return $this->belongsTo(DeliveryOrder::class, 'orderId', 'id');
     }
+
 
     // realtion
     public function product() {
-        return $this->hasOne(Product::class, 'productId');
+        return $this->hasOne(Product::class, 'id', 'productId');
     }
+
+    public function city()
+    {
+        return $this->hasOneThrough(
+            City::class,
+            DeliveryOrder::class,
+            'id',         // Foreign key on delivery_order_items table (deliveryOrderId)
+            'id',         // Foreign key on cities table (id of the city)
+            'orderId',    // Local key on delivery_order_items table
+            'cityId'      // Local key on delivery_orders table
+        );
+    }
+
+
 }

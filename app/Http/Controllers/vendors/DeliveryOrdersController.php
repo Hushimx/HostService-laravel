@@ -4,7 +4,10 @@ namespace App\Http\Controllers\vendors;
 
 use Illuminate\Http\Request;
 use App\Models\DeliveryOrder;
+use App\Models\DeliveryOrderItem;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DeliveryOrdersController extends Controller
 {
@@ -13,8 +16,11 @@ class DeliveryOrdersController extends Controller
      */
     public function index()
     {
-        //
-        $deliveryOrders = DeliveryOrder::with('city')->paginate(10);
+        $vendorId = Auth::guard('vendors')->user()->id;
+        $deliveryOrders = DeliveryOrderItem::with(['deliveryOrder', 'product', 'city'])
+                    ->where('vendorId', $vendorId)
+                    ->distinct('orderId')
+                    ->paginate(10);
         return view('avendor.pages.delivery-orders.index', compact('deliveryOrders'));
     }
 
