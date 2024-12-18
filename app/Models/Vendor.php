@@ -36,9 +36,10 @@ class Vendor extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
-    // Define the many-to-many relationship
+    // Many-to-Many relationship with Store
     public function stores()
     {
-        return $this->belongsToMany(Store::class, 'vendor_store');
+        return $this->belongsToMany(Store::class, 'vendor_store', 'vendorId', 'storeId');
     }
+
 }

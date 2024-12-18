@@ -10,11 +10,14 @@ class Store extends Model
 {
     use HasFactory;
 
+    protected $table = 'stores';
+
     protected $fillable = ['name', 'imageUrl', 'description', 'slug'];
 
-    // Define the many-to-many relationship
+    // Many-to-Many relationship with Vendor
     public function vendors()
     {
-        return $this->belongsToMany(Vendor::class, 'vendor_store');
+        return $this->belongsToMany(Vendor::class, 'vendor_store', 'storeId', 'vendorId');
     }
+
 }

@@ -11,7 +11,13 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable = ['name', 'price', 'categoryId', 'image', 'vendorId', 'cityId', 'storeId'];
+    protected $fillable = ['name', 'price', 'categoryId', 'aproved', 'image', 'vendorId', 'cityId', 'storeId'];
+
+    // Override the updated_at column name
+    const UPDATED_AT = 'updatedAt';
+
+    // Override the created_at column name (optional)
+    const CREATED_AT = 'createdAt';
 
     // Define the inverse relationship to ProductCategory
     public function category()
