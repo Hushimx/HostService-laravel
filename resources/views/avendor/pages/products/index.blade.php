@@ -17,7 +17,7 @@
       {{ trans('products.manage') }} <small class="font-size-base font-w400 text-muted">{{ trans('products.products') }}</small>
     </x-slot>
     <li class="breadcrumb-item" aria-current="page">
-      <a class="link-fx" href="/">{{ trans('main_trans.Dashboard_page') }}</a>
+      <a class="link-fx" href="{{ route('vendor.dashboard') }}">{{ trans('main_trans.Dashboard_page') }}</a>
     </li>
     <li class="breadcrumb-item">{{ trans('products.manage') }} {{ trans('products.products') }}</li>
   </x-hero>
@@ -131,13 +131,12 @@
             </div>
           </div>
         </div>
-        <!-- END add modal Content -->
         {{-- errors And Alerts --}}
-        <div class="alertDiv">
-          <x-alert />
-        </div>
-        {{-- end errors And Alerts --}}
-        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+        <x-alert />
+        <!--
+            DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js
+            which was auto compiled from _js/pages/be_tables_datatables.js
+        -->
         <table class="table table-responsive-xl table-bordered table-striped table-vcenter js-dataTable-full">
           <thead>
             <tr>
@@ -190,7 +189,7 @@
                 <td>
                   <div class="d-flex flex-column justify-content-start align-items-stretch">
                     <a class="btn btn-sm btn-primary d-flex align-items-baseline mb-1" href="{{ route('products.edit', $product) }}"
-                      data-toggle="tooltip" data-placement="left" title="Edit the course"
+                      data-toggle="tooltip" data-placement="left" title="Edit this product"
                     >
                       <i class="fa fa-edit fa-fw mr-1"></i>{{ trans('students.edit') }}
                     </a>
@@ -216,9 +215,10 @@
                       </div>
                       <div class="block-content font-size-sm">
                         {{-- start form --}}
-                        <form action="{{ route('products.destroy', $product) }}" method="POST">
+                        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                           @csrf
                           @method('DELETE')
+                          <input type="hidden" name="page" value="{{ $products->currentPage() }}">
                           <div class="row">
                             <div class="col-lg-12 col-xl-12">
                               <div class="form-group text-center">
@@ -247,6 +247,7 @@
           </tbody>
         </table>
         <!-- END Dynamic Table Full -->
+        {{ $products->links() }}
       </div>
     </div>
   </div>

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
-use App\Models\Store;
-use App\Models\Vendor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +14,7 @@ class ProductController extends Controller
     {
         $vendorStores = Auth::guard('vendors')->user()->stores;
         $productCategories = ProductCategory::all();
-        $products = Product::all();
+        $products = Product::orderBy('createdAt', 'desc')->paginate(10);
         return view('avendor.pages.products.index', compact('products', 'productCategories', 'vendorStores'));
     }
 
@@ -121,11 +119,8 @@ class ProductController extends Controller
         }
     }
 
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
-        $product->delete();
-
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
 
         try {
             // Check if the course has an associated image
@@ -143,12 +138,16 @@ class ProductController extends Controller
               throw new \Exception('Failed to delete the course.');
             }
 
-            // If everything is successful, redirect with success message
-            return redirect()->route('products.index')->with('success', trans('action.data_delete_success'));
+            $paginator = Product::orderBy('createdAt', 'desc')->paginate(10);
+            $redirectToPage = ($request->page <= $paginator->lastPage()) ? $request->page : $paginator->lastPage();
+
+            // Redirect to the products.index route, preserving the current page
+            return redirect()->route('products.index', ['page' => $redirectToPage])
+                ->with('success', 'Product deleted successfully.');
 
           } catch (\Exception $e) {
             // If an error occurs, redirect back with an error message
-            return redirect()->route('products.index')->with('error', $e->getMessage());
+            return redirect()->route('products.index', ['page' => $request->page])->with('error', $e->getMessage());
           }
     }
 }

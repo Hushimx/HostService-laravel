@@ -20,7 +20,7 @@ return [
   'stores' => 'Stores',
   'select_store' => 'Select Store',
   'products_info' => 'Products Information',
-  '' => '',
-  '' => '',
+  'edit' => 'Edit',
+  'product' => 'Product',
 
 ];

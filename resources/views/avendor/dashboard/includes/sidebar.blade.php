@@ -14,12 +14,12 @@
     <!-- Side Header -->
     <div class="content-header bg-white-5">
       <!-- Logo -->
-      <a class="font-w600 text-dual" href="{{ route('admin.dashboard') }}">
+      <a class="font-w600 text-dual" href="{{ route('vendor.dashboard') }}">
         <span class="smini-visible">
           <i class="fa fa-circle-notch text-primary"></i>
         </span>
         <span class="smini-hide font-size-h5 tracking-wider">
-          Mr<span class="font-w400">Mathematica</span>
+          Mr<span class="font-w400">Hashim</span>
         </span>
       </a>
 
@@ -102,7 +102,7 @@
         <ul class="nav-main">
 
           <li class="nav-main-item">
-            <a class="nav-main-link {{ Route::is('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+            <a class="nav-main-link {{ Route::is('vendor.dashboard') ? 'active' : '' }}" href="{{ route('vendor.dashboard') }}">
               <i class="nav-main-link-icon si si-speedometer"></i>
               <span class="nav-main-link-name">{{ trans('sidebar.dashboard') }}</span>
             </a>
@@ -111,8 +111,8 @@
           <li class="nav-main-heading">{{ trans('sidebar.school_info') }}</li>
           {{-- in class tag {{ (Route::is('students.index') || Route::is('students.create')) ? 'active' : '' }} --}}
           {{-- ========== side nav beigns from here ========== --}}
-          <li class="nav-main-item">
-            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+          {{-- <li class="nav-main-item">
+            <a class="nav-main-link nav-main-link-submenu {{ Route::is('products.index') ? 'active' : '' }}" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
               <i class="nav-main-link-icon fa fa-user-graduate"></i>
               <span class="nav-main-link-name">{{ trans('products.products') }}</span>
             </a>
@@ -128,12 +128,19 @@
                 </a>
               </li>
             </ul>
+          </li> --}}
+
+          <li class="nav-main-item">
+            <a class="nav-main-link {{ Route::is('products.index') ? 'active' : '' }}" href="{{ route('products.index') }}">
+                <i class="nav-main-link-icon fa fa-user-graduate"></i>
+                <span class="nav-main-link-name">{{ trans('products.products') }}</span>
+            </a>
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link" href="">
+            <a class="nav-main-link {{ Route::is('deliveryOrders.index') ? 'active' : '' }}" href="{{ route('deliveryOrders.index') }}">
               <i class="nav-main-link-icon fa fa-laptop"></i>
-              <span class="nav-main-link-name">{{ trans('courses.manage_courses') }}</span>
+              <span class="nav-main-link-name">{{ trans('main_trans.delivery-orders') }}</span>
             </a>
           </li>
 

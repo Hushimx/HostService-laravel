@@ -7,7 +7,7 @@
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2 text-center text-sm-left">
                 <div class="flex-sm-fill">
                     <h1 class="h3 font-w700 mb-2">
-                        Main Dashboard
+                        Vendor Dashboard
                     </h1>
                     <h2 class="h6 font-w500 text-muted mb-0">
                         Welcome <a class="font-w600" href="javascript:void(0)">{{ Auth::guard('vendors')->user()->name }}</a>, everything looks great.

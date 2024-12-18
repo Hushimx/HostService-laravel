@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\DeliveryOrderItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -23,5 +24,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(ProductCategory::class, 'categoryId');
+    }
+
+    // realtion - one Product many DeliveryOrderItem
+    public function deliveryOrderItems() {
+        return $this->hasMany(DeliveryOrderItem::class, 'productId');
     }
 }

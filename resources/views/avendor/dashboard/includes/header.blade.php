@@ -106,14 +106,14 @@
                         {{-- <a class="dropdown-item d-flex align-items-center justify-content-between" href="op_auth_lock.html">
                             <span class="font-size-sm font-w500">Lock Account</span>
                         </a> --}}
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('vendor.logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('vendor-logout-form').submit();">
                             <span class="font-size-sm font-w500">{{ __('Logout') }}</span>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </span>
+                            <form id="vendor-logout-form" action="{{ route('vendor.logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </a>
+
                     </div>
                 </div>
             </div>

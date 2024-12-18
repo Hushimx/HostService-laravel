@@ -33,9 +33,11 @@ class VendorLoginController extends Controller
         return back()->withErrors(['email' => 'The provided credentials are incorrect.']);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::guard('vendors')->logout();
+        $request->session()->invalidate(); // Invalidate session
+        $request->session()->regenerateToken(); // Regenerate CSRF token for security
         return redirect('/');
     }
 }

@@ -28,4 +28,9 @@ class City extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    // has Many city
+    public function deliveryOrders() {
+        return $this->hasMany(DeliveryOrder::class, 'cityId');
+    }
 }

@@ -20,4 +20,14 @@ return [
   'Copyright' => 'جميع الحقوق محفوظة ',
   'Name_Programer' => 'محمود يسرى سوفت',
 
+  // delivery Orders section
+  'delivery-orders' => 'طلبات التوصيل',
+  'name' => 'الاسم',
+  'city' => 'المدينة',
+  'hotelName' => 'اسم الفندق',
+  'storeSlug' => 'اسم المتجر',
+  'notes' => 'الملاحظات',
+  'status' => 'الحالة',
+  'clientName' => 'اسم العميل',
+  '' => '',
 ];
