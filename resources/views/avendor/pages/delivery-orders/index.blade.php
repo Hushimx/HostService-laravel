@@ -48,28 +48,30 @@
           </thead>
           <tbody id="tbody">
             @foreach ($deliveryOrders as $order)
-              <tr>
-                <td class="text-center">{{ $order->id }}</td>
-                <td class="font-w600 font-size-sm">{{ $order->clientName }}</td>
-                <td class="font-w600 font-size-sm">{{ $order->city->name }}</td>
-                <td class="font-w600 font-size-sm">{{ $order->hotelName }}</td>
-                <td class="font-w600 font-size-sm">{{ $order->storeSlug }}</td>
-                <td class="font-w600 font-size-sm">{{ $order->notes }}</td>
-                <td class="font-w600 font-size-sm text-white text-center">
-                  <span @if ($order->status) class='bg-success p-1 rounded d-block' @else class='bg-danger p-1 rounded d-block' @endif>
-                    @if ($order->status)
-                        {{ $order->status }}
-                    @else
-                        {{ 'No Status Available' }}
-                    @endif
-                  </span>
-                </td>
-                <td class="font-w600 font-size-sm text-center">
-                    {{-- <span>{{ $product->createdAt }}</span> --}}
-                    <span class="d-block">{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans() }}</span>
-                    <span>{{ \Carbon\Carbon::parse($order->created_at)->format('M d Y') }}</span>
-                </td>
-              </tr>
+                @if ($order->deliveryOrder)
+                <tr>
+                    <td class="text-center">{{ $order->deliveryOrder->id }}</td>
+                    <td class="font-w600 font-size-sm">{{ $order->deliveryOrder->clientName }}</td>
+                    <td class="font-w600 font-size-sm">{{ $order->city->name }}</td>
+                    <td class="font-w600 font-size-sm">{{ $order->deliveryOrder->hotelName }}</td>
+                    <td class="font-w600 font-size-sm">{{ $order->deliveryOrder->storeSlug }}</td>
+                    <td class="font-w600 font-size-sm">{{ $order->deliveryOrder->notes ? $order->deliveryOrder->notes : 'no notes' }}</td>
+                    <td class="font-w600 font-size-sm text-white text-center">
+                    <span @if ($order->deliveryOrder->status) class='bg-success p-1 rounded d-block' @else class='bg-danger p-1 rounded d-block' @endif>
+                        @if ($order->deliveryOrder->status)
+                            {{ $order->deliveryOrder->status }}
+                        @else
+                            {{ 'No Status Available' }}
+                        @endif
+                    </span>
+                    </td>
+                    <td class="font-w600 font-size-sm text-center">
+                        {{-- <span>{{ $product->createdAt }}</span> --}}
+                        <span class="d-block">{{ \Carbon\Carbon::parse($order->deliveryOrder->createdAt)->diffForHumans() }}</span>
+                        <span>{{ \Carbon\Carbon::parse($order->deliveryOrder->updatedAt)->format('M d Y') }}</span>
+                    </td>
+                </tr>
+                @endif
             @endforeach
           </tbody>
         </table>
