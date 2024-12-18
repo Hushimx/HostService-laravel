@@ -131,13 +131,12 @@
             </div>
           </div>
         </div>
-        <!-- END add modal Content -->
         {{-- errors And Alerts --}}
-        <div class="alertDiv">
-          <x-alert />
-        </div>
-        {{-- end errors And Alerts --}}
-        <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
+        <x-alert />
+        <!--
+            DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js
+            which was auto compiled from _js/pages/be_tables_datatables.js
+        -->
         <table class="table table-responsive-xl table-bordered table-striped table-vcenter js-dataTable-full">
           <thead>
             <tr>
@@ -190,7 +189,7 @@
                 <td>
                   <div class="d-flex flex-column justify-content-start align-items-stretch">
                     <a class="btn btn-sm btn-primary d-flex align-items-baseline mb-1" href="{{ route('products.edit', $product) }}"
-                      data-toggle="tooltip" data-placement="left" title="Edit the course"
+                      data-toggle="tooltip" data-placement="left" title="Edit this product"
                     >
                       <i class="fa fa-edit fa-fw mr-1"></i>{{ trans('students.edit') }}
                     </a>
@@ -247,6 +246,7 @@
           </tbody>
         </table>
         <!-- END Dynamic Table Full -->
+        {{ $products->links() }}
       </div>
     </div>
   </div>
