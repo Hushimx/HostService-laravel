@@ -20,4 +20,35 @@ return [
   'Copyright' => 'جميع الحقوق محفوظة ',
   'Name_Programer' => 'محمود يسرى سوفت',
 
+  // delivery Orders section
+  'delivery-orders' => 'طلبات التوصيل',
+  'delivery-orders-items' => 'عرض الطلبات',
+  'name' => 'الاسم',
+  'city' => 'المدينة',
+  'hotelName' => 'اسم الفندق',
+  'storeSlug' => 'اسم المتجر',
+  'notes' => 'الملاحظات',
+  'status' => 'الحالة',
+  'clientName' => 'اسم العميل',
+  'clientNumber' => 'رقم العميل',
+  'view' => 'عرض',
+
+  // delivery Orders Item
+  'productTitle' => 'اسم المنتج',
+  'price' => 'السعر',
+  'quantity' => 'العدد',
+  'total' => 'المجموع',
+  'delivery_order_info' => 'معلومات طلبات التوصيل',
+  'clientNumber' => 'رقم العميل',
+  'paymentMethod' => 'طريقة الدفع',
+
+  // vendor services
+  'services' => 'الخدمات',
+  'slug' => 'الكلمه المفتاحية',
+  'serviceName' => 'اسم الخدمة',
+  'serviceDesc' => 'وصف الخدمة',
+  'edit-price' => 'تعديل السعر',
+  '' => '',
+  '' => '',
+
 ];

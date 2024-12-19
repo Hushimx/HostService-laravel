@@ -1,12 +1,12 @@
 <?php
 
 use App\Models\City;
-use App\Models\Country;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\VendorLoginController;
+use App\Http\Controllers\vendors\DeliveryOrdersController;
+use App\Http\Controllers\vendors\VendorServicesController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -24,15 +24,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest' ]
-    ],
-function(){
-    // vendor Authentication
-    Route::get('vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login.form');
-});
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ],
 function(){
@@ -41,31 +32,42 @@ function(){
     Route::view('/user/password/forget', 'auth/passwords/email')->name('password.forgetpassword');
 
     // vendor Authentication
-    Route::post('vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
-    Route::post('vendor/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
+    Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
 
     // Route::resource('vendors', VendorController::class);
 
-    // vendor dashboard
-    Route::get('/vendor/dashboard', function () {
-        return view('avendor.dashboard');
-    })->name('vendor.dashboard');
-
+    // Route::view('admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
     // Global Routes
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::view('/', 'welcome');
+    Route::view('/home', 'welcome')->name('home');
 
     Route::get('/cities', function () {
         return City::all();
     });
 
-    Route::view('admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
 
     Route::get('/users', function () {
         return view('page_default');
     });
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
+
+/*
+|--------------------------------------------------------------------------
+| guest Routes Only Can Access
+|--------------------------------------------------------------------------
+| these routes for guest can access only
+|
+|
+*/
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest']
+    ],
+function(){
+    // vendor Authentication
+    Route::get('vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login.form');
 });
 
 
@@ -84,12 +86,28 @@ Route::group(
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'vendor']
     ],
 function(){
-    Route::view('/', 'avendor.dashboard');
 
+    // vendor dashboard
+    Route::view('/vendor/dashboard', 'avendor.dashboard')->name('vendor.dashboard');
+    Route::post('/vendor/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
+
+    // deliveryOrders
+    Route::get('delivery-orders', [DeliveryOrdersController::class, 'index'])->name('deliveryOrders.index');
+    Route::get('delivery-orders/delivery-order-items/{id}', [DeliveryOrdersController::class, 'deliveryOrderItems'])->name('deliveryOrders.deliveryOrderItems');
+
+    // vendor services
+    Route::get('vendor-services', [VendorServicesController::class, 'index'])->name('services.index');
+    Route::get('vendor-services/{serviceId}', [VendorServicesController::class, 'edit'])->name('services.edit');
+
+    // products Controller
     Route::resource('products', ProductController::class);
+
 });
 
-
+// Fallback route
+Route::fallback(function () {
+    return redirect('/home'); // Redirect to the desired route
+});
 
 
 

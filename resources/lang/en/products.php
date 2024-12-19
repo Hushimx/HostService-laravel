@@ -12,10 +12,15 @@ return [
   'price' => 'Price',
   'approve' => 'Approve',
   'category' => 'Category',
+  'categories' => 'Categories',
+  'select_category' => 'Select Category',
   'createdAt' => 'Created At',
   'no-category' => 'No category available',
-  '' => '',
-  '' => '',
-  '' => '',
+  'img_prev' => 'Product Image Preview',
+  'stores' => 'Stores',
+  'select_store' => 'Select Store',
+  'products_info' => 'Products Information',
+  'edit' => 'Edit',
+  'product' => 'Product',
 
 ];

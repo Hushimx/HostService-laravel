@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\City;
 use App\Models\Store;
 use App\Models\Product;
+use App\Models\DeliveryOrderItem;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
@@ -36,9 +37,21 @@ class Vendor extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
-    // Define the many-to-many relationship
+    // Many-to-Many relationship with Store
     public function stores()
     {
-        return $this->belongsToMany(Store::class, 'vendor_store');
+        return $this->belongsToMany(Store::class, 'vendor_store', 'vendorId', 'storeId');
     }
+
+    // one vendor many delivery_order_items
+    public function deliveryOrderItems() {
+        return $this->hasMany(DeliveryOrderItem::class, 'vendorId');
+    }
+
+     // one vendor many services
+    public function services()
+    {
+      return $this->hasMany(Service::class, 'serviceId');
+    }
+
 }
