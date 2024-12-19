@@ -48,4 +48,10 @@ class Vendor extends Authenticatable
         return $this->hasMany(DeliveryOrderItem::class, 'vendorId');
     }
 
+     // one vendor many services
+    public function services()
+    {
+      return $this->hasMany(Service::class, 'serviceId');
+    }
+
 }

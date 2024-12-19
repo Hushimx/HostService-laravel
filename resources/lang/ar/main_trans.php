@@ -41,6 +41,11 @@ return [
   'delivery_order_info' => 'معلومات طلبات التوصيل',
   'clientNumber' => 'رقم العميل',
   'paymentMethod' => 'طريقة الدفع',
+
+  // vendor services
+  'services' => 'الخدمات',
+  '' => '',
+  '' => '',
   '' => '',
   '' => '',
 

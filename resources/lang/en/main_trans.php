@@ -39,6 +39,13 @@ return [
   'delivery_order_info' => 'Delivery Order Info',
   'clientNumber' => 'Client Number',
   'paymentMethod' => 'Payment Method',
+
+  // vendor services
+  'services' => 'Services',
+  '' => '',
+  '' => '',
+  '' => '',
+  '' => '',
   '' => '',
   '' => '',
 
