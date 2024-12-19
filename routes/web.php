@@ -96,7 +96,8 @@ function(){
     Route::get('delivery-orders/delivery-order-items/{id}', [DeliveryOrdersController::class, 'deliveryOrderItems'])->name('deliveryOrders.deliveryOrderItems');
 
     // vendor services
-    Route::get('vendor-services', [VendorServicesController::class, 'index'])->name('service.index');
+    Route::get('vendor-services', [VendorServicesController::class, 'index'])->name('services.index');
+    Route::get('vendor-services/{serviceId}', [VendorServicesController::class, 'edit'])->name('services.edit');
 
     // products Controller
     Route::resource('products', ProductController::class);

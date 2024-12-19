@@ -42,10 +42,10 @@ return [
 
   // vendor services
   'services' => 'Services',
-  '' => '',
-  '' => '',
-  '' => '',
-  '' => '',
+  'slug' => 'Slug',
+  'serviceName' => 'Service Name',
+  'serviceDesc' => 'Service Description',
+  'edit-price' => 'Edit Price',
   '' => '',
   '' => '',
 

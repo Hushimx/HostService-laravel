@@ -145,9 +145,9 @@
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link" href="">
+            <a class="nav-main-link {{ Route::is('services.index') ? 'active' : '' }}" href="{{ route('services.index') }}">
               <i class="nav-main-link-icon fa fa-chalkboard-teacher"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.questions_bank') }}</span>
+              <span class="nav-main-link-name">{{ trans('main_trans.services') }}</span>
             </a>
           </li>
 
