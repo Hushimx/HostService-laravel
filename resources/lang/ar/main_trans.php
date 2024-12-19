@@ -22,6 +22,7 @@ return [
 
   // delivery Orders section
   'delivery-orders' => 'طلبات التوصيل',
+  'delivery-orders-items' => 'عرض الطلبات',
   'name' => 'الاسم',
   'city' => 'المدينة',
   'hotelName' => 'اسم الفندق',
@@ -29,5 +30,18 @@ return [
   'notes' => 'الملاحظات',
   'status' => 'الحالة',
   'clientName' => 'اسم العميل',
+  'clientNumber' => 'رقم العميل',
+  'view' => 'عرض',
+
+  // delivery Orders Item
+  'productTitle' => 'اسم المنتج',
+  'price' => 'السعر',
+  'quantity' => 'العدد',
+  'total' => 'المجموع',
+  'delivery_order_info' => 'معلومات طلبات التوصيل',
+  'clientNumber' => 'رقم العميل',
+  'paymentMethod' => 'طريقة الدفع',
   '' => '',
+  '' => '',
+
 ];

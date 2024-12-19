@@ -92,8 +92,13 @@ function(){
     Route::view('/vendor/dashboard', 'avendor.dashboard')->name('vendor.dashboard');
     Route::post('/vendor/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
 
+
+    // deliveryOrders
+    Route::get('delivery-orders', [DeliveryOrdersController::class, 'index'])->name('deliveryOrders.index');
+    Route::get('delivery-orders/delivery-order-items/{id}', [DeliveryOrdersController::class, 'deliveryOrderItems'])->name('deliveryOrders.deliveryOrderItems');
+
     Route::resource('products', ProductController::class);
-    Route::resource('deliveryOrders', DeliveryOrdersController::class);
+
 });
 
 // Fallback route
