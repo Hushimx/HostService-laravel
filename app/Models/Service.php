@@ -3,7 +3,7 @@ namespace App\Models;
 
 use App\Models\City;
 use App\Models\Vendor;
-use App\Models\ServiceOrder;
+use App\Models\ServiceData;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
@@ -11,9 +11,9 @@ class Service extends Model
   protected $table = 'city_service_vendors';
   protected $fillable = ['ServicesData'];
 
-  public function serviceOrders()
+  public function service()
   {
-    return $this->hasMany(ServiceOrder::class);
+    return $this->hasOne(ServiceData::class, 'id');
   }
 
   // one vendor many services

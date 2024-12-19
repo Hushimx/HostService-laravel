@@ -3,9 +3,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceOrder extends Model
+class ServiceData extends Model
 {
-  protected $table = 'service_orders';
+  protected $table = 'services';
   protected $fillable = ['client_id', 'service_id', 'vendor_id', 'city_id', 'room_id', 'status', 'total'];
 
   public function service()

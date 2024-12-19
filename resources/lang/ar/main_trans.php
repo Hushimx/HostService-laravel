@@ -44,8 +44,10 @@ return [
 
   // vendor services
   'services' => 'الخدمات',
-  '' => '',
-  '' => '',
+  'slug' => 'الكلمه المفتاحية',
+  'serviceName' => 'اسم الخدمة',
+  'serviceDesc' => 'وصف الخدمة',
+  'edit-price' => 'تعديل السعر',
   '' => '',
   '' => '',
 
