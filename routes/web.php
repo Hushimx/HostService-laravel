@@ -1,13 +1,12 @@
 <?php
 
 use App\Models\City;
-use App\Models\Country;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\VendorLoginController;
 use App\Http\Controllers\vendors\DeliveryOrdersController;
+use App\Http\Controllers\vendors\VendorServicesController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -92,8 +91,16 @@ function(){
     Route::view('/vendor/dashboard', 'avendor.dashboard')->name('vendor.dashboard');
     Route::post('/vendor/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
 
+    // deliveryOrders
+    Route::get('delivery-orders', [DeliveryOrdersController::class, 'index'])->name('deliveryOrders.index');
+    Route::get('delivery-orders/delivery-order-items/{id}', [DeliveryOrdersController::class, 'deliveryOrderItems'])->name('deliveryOrders.deliveryOrderItems');
+
+    // vendor services
+    Route::get('vendor-services', [VendorServicesController::class, 'index'])->name('service.index');
+
+    // products Controller
     Route::resource('products', ProductController::class);
-    Route::resource('deliveryOrders', DeliveryOrdersController::class);
+
 });
 
 // Fallback route
