@@ -83,10 +83,10 @@
                             </div>
                             <div class="block-content text-center border-top">
                               <div class="form-group">
-                                <button type="submit" class="btn btn-md btn-danger">
-                                  <i class="fa fa-fw fa-times mr-1"></i> {{ trans('grades.yes') }}
+                                <button type="submit" class="btn btn-md btn-primary">
+                                  <i class="fa fa-fw fa-check mr-1"></i> {{ trans('grades.save') }}
                                 </button>
-                                <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">{{ trans('grades.no') }}</button>
+                                <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">{{ trans('grades.cancel') }}</button>
                               </div>
                             </div>
                           </div>
@@ -181,7 +181,7 @@
 
                 let input = document.createElement('input');
                 input.setAttribute('id', `price-${index}`);
-                input.setAttribute('class', 'form-control');
+                input.setAttribute('class', 'form-control mb-3');
                 input.setAttribute('type', 'text');
                 input.setAttribute('value', item.price);
                 input.setAttribute('placeholder', 'Enter price');
