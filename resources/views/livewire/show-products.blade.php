@@ -1,7 +1,12 @@
 <div>
   <div class="d-flex justify-content-center align-items-center mb-2">
-    <input type="text" class="form-control mr-2" placeholder="Search..." wire:model.defer="searchKey">
-    <button type="submit" wire:click="search" class="btn btn-primary">Search</button>
+    <input type="text" class="form-control mr-2" placeholder="Search..." wire:model.defer="searchKey" wire:keydown.enter="search">
+    <button type="submit" wire:click="search" class="btn btn-primary d-flex align-items-center" wire:loading.class='btn-success' wire:loading.attr='disabled'>
+      <span>Search</span>
+      <div class="spinner-border spinner-border-sm text-light ml-2" role="status" wire:loading wire:target='search'>
+        <span class="sr-only">Loading...</span>
+      </div>
+    </button>
   </div>
   <p class="mb-2">Current Search Key: {{ $searchKey }}</p>
   <table class="table table-responsive-xl table-bordered table-striped table-vcenter">

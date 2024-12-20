@@ -13,7 +13,7 @@ class ShowProducts extends Component
   use WithPagination; // Enables Livewire pagination
 
   public $searchKey;
-  public $searchResults;
+  protected  $searchResults;
 
   protected $paginationTheme = 'bootstrap';
 
@@ -39,16 +39,21 @@ class ShowProducts extends Component
     $this->searchResults = $query->paginate(5); // Paginate results
   }
 
-  public function render()
-  {
+  public function getProductsProperty()
+    {
+        // Use searchResults if available, otherwise load default products
+        return $this->searchResults ?: Product::latest()->paginate(5);
+    }
 
-    // Fetch related vendor stores
-    $vendorStores = Auth::guard('vendors')->user()->stores;
-    $productCategories = ProductCategory::all();
+    public function render()
+    {
+        $vendorStores = Auth::guard('vendors')->user()->stores;
+        $productCategories = ProductCategory::all();
 
-    // Check if search has been triggered, otherwise load default products
-    $products = $this->searchResults ?: Product::latest()->paginate(5);
-
-    return view('livewire.show-products', compact('products', 'productCategories', 'vendorStores'));
-  }
+        return view('livewire.show-products', [
+            'products' => $this->products, // Access via the getter method
+            'productCategories' => $productCategories,
+            'vendorStores' => $vendorStores,
+        ]);
+    }
 }
