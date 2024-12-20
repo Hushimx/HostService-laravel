@@ -12,10 +12,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $vendorStores = Auth::guard('vendors')->user()->stores;
-        $productCategories = ProductCategory::all();
-        $products = Product::orderBy('createdAt', 'desc')->paginate(10);
-        return view('avendor.pages.products.index', compact('products', 'productCategories', 'vendorStores'));
+      $vendorStores = Auth::guard('vendors')->user()->stores; // for select boxe
+      $productCategories = ProductCategory::all(); // for select boxe
+      return view('avendor.pages.products.index', compact('productCategories', 'vendorStores'));
     }
 
     public function create()
