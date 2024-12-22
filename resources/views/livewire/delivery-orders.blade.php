@@ -9,11 +9,6 @@
     </button>
   </div>
   <p class="mb-2">Current Search Key: {{ $searchKey }}</p>
-
-  @if($deliveryOrders->isEmpty())
-    <p>No results found for your search.</p>
-  @endif
-
   <table class="table table-responsive-xl table-bordered table-striped table-vcenter">
     <thead>
       <tr>
