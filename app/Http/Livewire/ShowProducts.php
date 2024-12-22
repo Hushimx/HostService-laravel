@@ -16,7 +16,6 @@ class ShowProducts extends Component
   protected  $searchResults;
 
   protected $paginationTheme = 'bootstrap';
-
   protected $queryString = ['searchKey'];
 
   public function updatingSearchKey(): void
@@ -33,27 +32,28 @@ class ShowProducts extends Component
     $query = Product::latest();
 
     if ($this->searchKey) {
-        $query->where('name', 'like', '%' . $this->searchKey . '%');
+      $query->where('name', 'like', '%' . $this->searchKey . '%');
     }
 
     $this->searchResults = $query->paginate(5); // Paginate results
   }
 
   public function getProductsProperty()
-    {
-        // Use searchResults if available, otherwise load default products
-        return $this->searchResults ?: Product::latest()->paginate(5);
-    }
+  {
+    // Use searchResults if available, otherwise load default products
+    return $this->searchResults ?: Product::latest()->paginate(5);
+  }
 
-    public function render()
-    {
-        $vendorStores = Auth::guard('vendors')->user()->stores;
-        $productCategories = ProductCategory::all();
+  public function render()
+  {
+    $vendorStores = Auth::guard('vendors')->user()->stores;
+    $productCategories = ProductCategory::all();
 
-        return view('livewire.show-products', [
-            'products' => $this->products, // Access via the getter method
-            'productCategories' => $productCategories,
-            'vendorStores' => $vendorStores,
-        ]);
-    }
+    return view('livewire.show-products',
+    [
+      'products' => $this->products, // Access via the getter method
+      'productCategories' => $productCategories,
+      'vendorStores' => $vendorStores,
+    ]);
+  }
 }
