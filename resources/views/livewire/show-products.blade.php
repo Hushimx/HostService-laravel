@@ -16,7 +16,7 @@
         <th class="text-center">{{ trans('products.name') }}</th>
         <th class="text-center">{{ trans('products.image') }}</th>
         <th class="text-center">{{ trans('products.price') }}</th>
-        <th class="text-center" style="width: 155px;">{{ trans('products.approve') }}</th>
+        {{-- <th class="text-center" style="width: 155px;">{{ trans('products.approve') }}</th> --}}
         <th class="text-center">{{ trans('products.category') }}</th>
         <th class="text-center" style="width: 180px;">{{ trans('products.createdAt') }}</th>
         <th class="text-center">{{ trans('grades.action') }}</th>
@@ -39,13 +39,13 @@
             @endif
           </td>
           <td class="font-w600 font-size-sm">{{ $product->price }}</td>
-          <td class="font-w600 font-size-sm text-white text-center">
+          {{-- <td class="font-w600 font-size-sm text-white text-center">
             <span @if ($product->aproved) class='bg-success p-1 rounded d-block' @else class='bg-danger p-1 rounded d-block' @endif>
               @if ($product->aproved) <i class="fa fa-fw fa-check-circle fa-fw mr-1"></i>
               @else <i class="fa fa-fw fa-times-circle fa-fw mr-1"></i> @endif
               {{ $product->aproved ? trans('products.approve') : trans('courses.needApprove') }}
             </span>
-          </td>
+          </td> --}}
           <td class="font-w600 font-size-sm text-center">
               @if ($product->category)
                   {{ $product->category->name }}
