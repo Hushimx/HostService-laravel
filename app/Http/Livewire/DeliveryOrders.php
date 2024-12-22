@@ -32,32 +32,33 @@ class DeliveryOrders extends Component
 
     if ($this->searchKey) {
         $query = DeliveryOrderItem::with(['deliveryOrder', 'product', 'city'])
-                                    ->where('vendorId', $vendorId)
-                                    ->where(function ($query) {
-                                        $query->orWhereHas('city', function ($q) {
-                                            $q->where('name', 'like', '%' . $this->searchKey . '%'); // Assuming 'name' is the column in the 'city' table
-                                        })
-                                        ->orWhereHas('deliveryOrder', function ($q) {
-                                            $q->where('clientName', 'like', '%' . $this->searchKey . '%'); // Search in the deliveryOrder table
-                                        })
-                                        ->orWhereHas('deliveryOrder', function ($q) {
-                                            $q->where('hotelName', 'like', '%' . $this->searchKey . '%');
-                                        })
-                                        ->orWhereHas('deliveryOrder', function ($q) {
-                                            $q->where('storeSlug', 'like', '%' . $this->searchKey . '%');
-                                        })
-                                        ->orWhereHas('deliveryOrder', function ($q) {
-                                            $q->where('notes', 'like', '%' . $this->searchKey . '%');
-                                        });
-                                    });
-
-        $this->searchResults = $query->exists() ? $query->paginate(10) : null; // If no records, set to null
-    } else {
-        $this->searchResults = null; // No search key, no custom results
+            ->where('vendorId', $vendorId)
+            ->distinct('orderId')
+            ->where(function ($query) {
+                $searchKey = strtolower($this->searchKey); // Convert search key to lowercase
+                $query->orWhereHas('city', function ($q) use ($searchKey) {
+                    $q->whereRaw('LOWER(cities.name) LIKE ?', ['%' . $searchKey . '%']); // Explicit table reference
+                })
+                ->orWhereHas('deliveryOrder', function ($q) use ($searchKey) {
+                    $q->whereRaw('LOWER(delivery_orders."clientName") LIKE ?', ['%' . $searchKey . '%']); // Explicit table reference with correct case
+                })
+                ->orWhereHas('deliveryOrder', function ($q) use ($searchKey) {
+                    $q->whereRaw('LOWER(delivery_orders."hotelName") LIKE ?', ['%' . $searchKey . '%']); // Explicit table reference with correct case
+                })
+                ->orWhereHas('deliveryOrder', function ($q) use ($searchKey) {
+                    $q->whereRaw('LOWER(delivery_orders."storeSlug") LIKE ?', ['%' . $searchKey . '%']); // Explicit table reference with correct case
+                })
+                ->orWhereHas('deliveryOrder', function ($q) use ($searchKey) {
+                    $q->whereRaw('LOWER(delivery_orders.notes) LIKE ?', ['%' . $searchKey . '%']); // Explicit table reference
+                });
+            })
+            ->groupBy('delivery_order_items.id'); // Group by the unique ID
+      $this->searchResults = $query->paginate(10); // Paginate results
     }
+
   }
 
-  public function getProductsProperty()
+  public function getDeliveryOrdersProperty()
   {
     $vendorId = Auth::guard('vendors')->user()->id;
 
@@ -68,11 +69,6 @@ class DeliveryOrders extends Component
 
   public function render()
   {
-    $vendorId = Auth::guard('vendors')->user()->id;
-    $deliveryOrders = DeliveryOrderItem::with(['deliveryOrder', 'product', 'city'])
-                  ->where('vendorId', $vendorId)->distinct('orderId')
-                  ->paginate(10);
-
-    return view('livewire.delivery-orders', compact('deliveryOrders'));
+    return view('livewire.delivery-orders', ['deliveryOrders' => $this->deliveryOrders]);
   }
 }

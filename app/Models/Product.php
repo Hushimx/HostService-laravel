@@ -23,7 +23,7 @@ class Product extends Model
     // Define the inverse relationship to ProductCategory
     public function category()
     {
-        return $this->belongsTo(ProductCategory::class, 'categoryId');
+      return $this->belongsTo(ProductCategory::class, 'categoryId');
     }
 
     // realtion - one Product many DeliveryOrderItem

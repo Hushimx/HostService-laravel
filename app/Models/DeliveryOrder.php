@@ -27,8 +27,10 @@ class DeliveryOrder extends Model
     }
 
     // has one city
-    public function city() {
-        return $this->hasOne(City::class, 'id');
+    public function city()
+    {
+      return $this->belongsTo(City::class, 'cityId', 'id'); // 'cityId' on delivery_orders, 'id' on cities
     }
+
 
 }

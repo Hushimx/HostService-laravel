@@ -32,7 +32,8 @@ class ShowProducts extends Component
     $query = Product::latest();
 
     if ($this->searchKey) {
-      $query->where('name', 'like', '%' . $this->searchKey . '%');
+      $query->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($this->searchKey) . '%'])
+      ->orWhereRaw('CAST(price AS TEXT) LIKE ?', ['%' . strtolower($this->searchKey) . '%']);
     }
 
     $this->searchResults = $query->paginate(5); // Paginate results
