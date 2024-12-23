@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\VendorLoginController;
+use App\Http\Controllers\vendors\ServiceOrdersController;
 use App\Http\Controllers\vendors\DeliveryOrdersController;
 use App\Http\Controllers\vendors\VendorServicesController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -22,52 +23,40 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ],
+  [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+  ],
 function(){
     // users Authentication
     Auth::routes();
     Route::view('/user/password/forget', 'auth/passwords/email')->name('password.forgetpassword');
 
-    // vendor Authentication
-    Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
-
-    // Route::resource('vendors', VendorController::class);
-
-    // Route::view('admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
     // Global Routes
     Route::view('/', 'welcome');
     Route::view('/home', 'welcome')->name('home');
 
-    Route::get('/cities', function () {
-        return City::all();
-    });
-
-
-    Route::get('/users', function () {
-        return view('page_default');
-    });
 });
 
 /*
 |--------------------------------------------------------------------------
-| guest Routes Only Can Access
+| guest vendors Only
 |--------------------------------------------------------------------------
-| these routes for guest can access only
+| these routes for guest of vendors can access only
 |
 |
 */
 
 Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest']
-    ],
+  [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest:vendors']
+  ],
 function(){
-    // vendor Authentication
-    Route::get('vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login.form');
+  // vendor Authentication
+  Route::get('vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login.form');
+  // vendor Authentication
+  Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
 });
 
 
@@ -97,16 +86,54 @@ function(){
 
     // vendor services
     Route::get('vendor-services', [VendorServicesController::class, 'index'])->name('services.index');
-    Route::get('vendor-services/{serviceId}', [VendorServicesController::class, 'edit'])->name('services.edit');
+    Route::get('vendor-services/{serviceId}', [VendorServicesController::class, 'edit'])->name('services.edit'); // to edit the price
+
+    // service orders
+    Route::get('service-orders', [ServiceOrdersController::class, 'index'])->name('service.orders.index');
 
     // products Controller
     Route::resource('products', ProductController::class);
 
 });
 
+/*
+|--------------------------------------------------------------------------
+| guest web Only - Admin
+|--------------------------------------------------------------------------
+| these routes for guest of admin can access only
+|
+|
+*/
+
+Route::group(
+  [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest:web']
+  ],
+function(){
+  // admin Authentication
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Fallback route
 Route::fallback(function () {
-    return redirect('/home'); // Redirect to the desired route
+  return redirect('/home'); // Redirect to the desired route
 });
 
 

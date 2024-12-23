@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    protected $table = 'rooms';
-    protected $fillable = ['room_number', 'type', 'hotel_id'];
+  protected $table = 'rooms';
+  protected $fillable = ['room_number', 'type', 'hotel_id'];
 
-    public function hotel()
-    {
-        return $this->belongsTo(Hotel::class);
-    }
+  public function hotel()
+  {
+    return $this->belongsTo(Hotel::class, 'id');
+  }
+
+  public function serviceOrders()
+  {
+    return $this->hasMany(ServiceOrder::class, 'id');
+  }
 }
