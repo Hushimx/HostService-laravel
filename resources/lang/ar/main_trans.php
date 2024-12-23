@@ -51,4 +51,8 @@ return [
   '' => '',
   '' => '',
 
+  // service orders
+  'service-orders' => 'الخدمات المطلوبة',
+  '' => '',
+
 ];

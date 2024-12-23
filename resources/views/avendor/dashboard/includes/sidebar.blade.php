@@ -152,9 +152,9 @@
           </li>
 
           <li class="nav-main-item">
-            <a class="nav-main-link" href="">
+            <a class="nav-main-link {{ Route::is('service.orders.index') ? 'active' : '' }}" href="{{ route('service.orders.index') }}">
               <i class="nav-main-link-icon fa fa-question-circle"></i>
-              <span class="nav-main-link-name">{{ trans('students.quizzes') }}</span>
+              <span class="nav-main-link-name">{{ trans('main_trans.service-orders') }}</span>
             </a>
           </li>
 

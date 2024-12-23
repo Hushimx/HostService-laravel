@@ -46,7 +46,9 @@ return [
   'serviceName' => 'Service Name',
   'serviceDesc' => 'Service Description',
   'edit-price' => 'Edit Price',
-  '' => '',
+
+  // service orders
+  'service-orders' => 'Service Orders',
   '' => '',
 
 ];

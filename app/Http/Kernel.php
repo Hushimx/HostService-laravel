@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
 
         'vendor' => \App\Http\Middleware\VendorMiddleware::class,
+        'vendor.guest' => \App\Http\Middleware\VendorGuest::class,
     ];
 }

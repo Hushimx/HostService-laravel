@@ -18,7 +18,7 @@ class VendorMiddleware
     {
         // Check if the authenticated user is a vendor
         if (Auth::guard('vendors')->check()) {
-            return $next($request);
+          return $next($request);
         }
 
         // If not a vendor, redirect to login page (or appropriate page)

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\VendorLoginController;
+use App\Http\Controllers\vendors\ServiceOrdersController;
 use App\Http\Controllers\vendors\DeliveryOrdersController;
 use App\Http\Controllers\vendors\VendorServicesController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -53,21 +54,21 @@ function(){
 
 /*
 |--------------------------------------------------------------------------
-| guest Routes Only Can Access
+| guest vendors Only
 |--------------------------------------------------------------------------
-| these routes for guest can access only
+| these routes for guest of vendors can access only
 |
 |
 */
 
 Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest']
-    ],
+  [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest:vendors']
+  ],
 function(){
-    // vendor Authentication
-    Route::get('vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login.form');
+  // vendor Authentication
+  Route::get('vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login.form');
 });
 
 
@@ -97,7 +98,10 @@ function(){
 
     // vendor services
     Route::get('vendor-services', [VendorServicesController::class, 'index'])->name('services.index');
-    Route::get('vendor-services/{serviceId}', [VendorServicesController::class, 'edit'])->name('services.edit');
+    Route::get('vendor-services/{serviceId}', [VendorServicesController::class, 'edit'])->name('services.edit'); // to edit the price
+
+    // service orders
+    Route::get('service-orders', [ServiceOrdersController::class, 'index'])->name('service.orders.index');
 
     // products Controller
     Route::resource('products', ProductController::class);
