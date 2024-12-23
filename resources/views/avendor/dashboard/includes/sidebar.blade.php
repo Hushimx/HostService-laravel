@@ -158,42 +158,6 @@
             </a>
           </li>
 
-          <li class="nav-main-item">
-            <a class="nav-main-link" href="">
-              <i class="nav-main-link-icon fa fa-pen"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.posts') }}</span>
-            </a>
-          </li>
-
-          <li class="nav-main-item">
-            <a class="nav-main-link" href="">
-              <i class="nav-main-link-icon fa fa-paperclip"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.attachments') }}</span>
-            </a>
-          </li>
-
-          <li class="nav-main-item">
-            <a class="nav-main-link" href="">
-              <i class="nav-main-link-icon fa fa-chalkboard-teacher"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.results') }}</span>
-            </a>
-          </li>
-
-          <li class="nav-main-item">
-            <a class="nav-main-link" href="">
-              <i class="nav-main-link-icon fa fa-play"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.frontVideos') }}</span>
-            </a>
-          </li>
-
-          <li class="nav-main-heading">Others</li>
-
-          <li class="nav-main-item">
-            <a class="nav-main-link" href="">
-              <i class="nav-main-link-icon fa fa-inbox"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.contact_inbox') }}</span>
-            </a>
-          </li>
         </ul>
       </div>
       <!-- END Side Navigation -->

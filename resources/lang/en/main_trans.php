@@ -49,6 +49,10 @@ return [
 
   // service orders
   'service-orders' => 'Service Orders',
-  '' => '',
+  'roomNumber' => 'Room Number',
+  'hotelName' => 'Hotel Name',
+  'status' => 'Status',
+  'notes' => 'Notes',
+  'total' => 'Total',
 
 ];

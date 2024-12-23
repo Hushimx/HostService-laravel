@@ -53,6 +53,11 @@ return [
 
   // service orders
   'service-orders' => 'الخدمات المطلوبة',
-  '' => '',
+  'roomNumber' => 'رقم الغرفة',
+  'hotelName' => 'اسم الفندق',
+  'status' => 'الحالة',
+  'notes' => 'الملاحظات',
+  'total' => 'المجموع',
+
 
 ];

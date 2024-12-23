@@ -23,33 +23,19 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ],
+  [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+  ],
 function(){
     // users Authentication
     Auth::routes();
     Route::view('/user/password/forget', 'auth/passwords/email')->name('password.forgetpassword');
 
-    // vendor Authentication
-    Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
-
-    // Route::resource('vendors', VendorController::class);
-
-    // Route::view('admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
     // Global Routes
     Route::view('/', 'welcome');
     Route::view('/home', 'welcome')->name('home');
 
-    Route::get('/cities', function () {
-        return City::all();
-    });
-
-
-    Route::get('/users', function () {
-        return view('page_default');
-    });
 });
 
 /*
@@ -69,6 +55,8 @@ Route::group(
 function(){
   // vendor Authentication
   Route::get('vendor/login', [VendorLoginController::class, 'showLoginForm'])->name('vendor.login.form');
+  // vendor Authentication
+  Route::post('/vendor/login', [VendorLoginController::class, 'login'])->name('vendor.login');
 });
 
 
@@ -108,9 +96,44 @@ function(){
 
 });
 
+/*
+|--------------------------------------------------------------------------
+| guest web Only - Admin
+|--------------------------------------------------------------------------
+| these routes for guest of admin can access only
+|
+|
+*/
+
+Route::group(
+  [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest:web']
+  ],
+function(){
+  // admin Authentication
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Fallback route
 Route::fallback(function () {
-    return redirect('/home'); // Redirect to the desired route
+  return redirect('/home'); // Redirect to the desired route
 });
 
 
