@@ -59,5 +59,11 @@ return [
   'notes' => 'الملاحظات',
   'total' => 'المجموع',
 
+  // stores
+  'stores' => 'المتاجر',
+  'store_name' => 'اسم المتجر',
+  'imageUrl' => 'صورة المتجر',
+  'description' => 'وصف المتجر',
+
 
 ];

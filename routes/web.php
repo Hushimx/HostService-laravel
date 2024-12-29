@@ -3,6 +3,7 @@
 use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StoresController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\VendorLoginController;
 use App\Http\Controllers\vendors\ServiceOrdersController;
@@ -90,6 +91,9 @@ function(){
 
     // service orders
     Route::get('service-orders', [ServiceOrdersController::class, 'index'])->name('service.orders.index');
+
+    // stores
+    Route::get('vendor-stores', [StoresController::class, 'index'])->name('stores.index');
 
     // products Controller
     Route::resource('products', ProductController::class);
