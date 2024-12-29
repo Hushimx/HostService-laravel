@@ -13,45 +13,45 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Vendor extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-    protected $table = 'vendors';
+  use HasApiTokens, HasFactory, Notifiable;
+  protected $table = 'vendors';
 
-    protected $fillable = ['name', 'email', 'password', 'phoneNo', 'address', 'cityId'];
+  protected $fillable = ['name', 'email', 'password', 'phoneNo', 'address', 'cityId'];
 
-    protected static function boot()
-    {
-        parent::boot();
+  protected static function boot()
+  {
+    parent::boot();
 
-        static::creating(function ($vendor) {
-            $vendor->password = Hash::make($vendor->password);
-        });
-    }
+    static::creating(function ($vendor) {
+      $vendor->password = Hash::make($vendor->password);
+    });
+  }
 
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
+  public function city()
+  {
+    return $this->belongsTo(City::class);
+  }
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
+  public function products()
+  {
+    return $this->hasMany(Product::class);
+  }
 
-    // Many-to-Many relationship with Store
-    public function stores()
-    {
-        return $this->belongsToMany(Store::class, 'vendor_store', 'vendorId', 'storeId');
-    }
+  // Many-to-Many relationship with Store
+  public function stores()
+  {
+    return $this->hasMany(Store::class, 'id');
+  }
 
-    // one vendor many delivery_order_items
-    public function deliveryOrderItems() {
-        return $this->hasMany(DeliveryOrderItem::class, 'vendorId');
-    }
+  // one vendor many delivery_order_items
+  public function deliveryOrderItems() {
+    return $this->hasMany(DeliveryOrderItem::class, 'vendorId');
+  }
 
-     // one vendor many services
-    public function services()
-    {
-      return $this->hasMany(Service::class, 'serviceId');
-    }
+  // one vendor many services
+  public function services()
+  {
+    return $this->hasMany(Service::class, 'serviceId');
+  }
 
 }

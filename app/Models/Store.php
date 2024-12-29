@@ -17,7 +17,7 @@ class Store extends Model
     // Many-to-Many relationship with Vendor
     public function vendors()
     {
-        return $this->belongsToMany(Vendor::class, 'vendor_store', 'storeId', 'vendorId');
+      return $this->belongsTo(Vendor::class, 'storeId');
     }
 
 }
