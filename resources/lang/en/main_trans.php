@@ -55,4 +55,10 @@ return [
   'notes' => 'Notes',
   'total' => 'Total',
 
+  // stores
+  'stores' => 'Stores',
+  'store_name' => 'Name',
+  'imageUrl' => 'Image',
+  'description' => 'Description',
+
 ];

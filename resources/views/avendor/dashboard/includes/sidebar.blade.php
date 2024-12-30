@@ -158,6 +158,13 @@
             </a>
           </li>
 
+          <li class="nav-main-item">
+            <a class="nav-main-link {{ Route::is('stores.index') ? 'active' : '' }}" href="{{ route('stores.index') }}">
+              <i class="nav-main-link-icon fa fa-question-circle"></i>
+              <span class="nav-main-link-name">{{ trans('main_trans.stores') }}</span>
+            </a>
+          </li>
+
         </ul>
       </div>
       <!-- END Side Navigation -->
