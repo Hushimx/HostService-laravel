@@ -42,7 +42,6 @@ class ShowServices extends Component
             ->orWhereRaw('LOWER(services.description) LIKE ?', ['%' . strtolower($this->searchKey) . '%']);
         });
       });
-
     }
 
     $this->searchResults = $query->paginate(10); // Paginate results
