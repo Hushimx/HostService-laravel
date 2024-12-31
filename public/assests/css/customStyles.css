@@ -1,0 +1,130 @@
+.rtl {
+    direction: rtl;
+}
+
+#sidebar {
+    background-color: #f9e9f9 !important; /* Light pink background */
+}
+
+#sidebar .content-header {
+    background-color: #4A148C !important; /* Dark purple header background */
+    color: #fff !important; /* White text for the header */
+}
+
+#sidebar .content-header .host {
+    background-color: #FFD700 !important; /* Yellow background for "Host" */
+    color: #000 !important; /* Black text for "Host" */
+}
+
+#sidebar .content-header .service {
+    color: #fff !important; /* White text for "Service" */
+}
+
+#sidebar ul li a {
+    color: #4A148C !important; /* Purple text for links */
+    font-weight: 600 !important; /* Slightly bolder text */
+}
+
+#sidebar ul li a i {
+    color: #4A148C !important; /* Purple color for icons */
+    margin-right: 10px !important; /* Consistent spacing */
+    font-size: 18px !important; /* Ensure icons are visible */
+}
+
+#sidebar .content-side {
+    border-top: 1px solid #ddd !important; /* Light gray border */
+    padding-top: 20px !important; /* Added spacing for clarity */
+}
+
+#sidebar .content-side .avatar {
+    background-color: #ccc !important; /* Gray background for avatar */
+    color: #fff !important; /* White text in avatar */
+}
+
+#sidebar .content-side .user-info .name {
+    color: #4A148C !important; /* Purple text for user name */
+    font-weight: bold !important; /* Make the name stand out */
+}
+
+#sidebar .content-side .user-info .email {
+    color: #777 !important; /* Muted gray for email */
+    font-size: 14px !important; /* Slightly larger for readability */
+}
+/* Backgrounds */
+.bg-light-purple {
+    background-color: #f9e9f9 !important; /* Light Purple */
+}
+
+.bg-purple {
+    background-color: #4A148C !important; /* Deep Purple */
+}
+
+/* Borders */
+.border-yellow {
+    border-color: #FFD700 !important; /* Bright Yellow */
+}
+
+/* Text Colors */
+.text-purple {
+    color: #4A148C !important; /* Deep Purple Text */
+}
+
+.text-muted {
+    color: #6c757d !important; /* Muted Gray */
+}
+
+/* Buttons */
+.btn-purple {
+    background-color: #4A148C !important; /* Deep Purple */
+    color: #fff !important; /* White Text */
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-purple:hover {
+    background-color: #5E17A8 !important; /* Slightly Lighter Purple */
+    color: #fff !important;
+}
+
+.btn-outline-purple {
+    border: 2px solid #4A148C !important; /* Purple Border */
+    color: #4A148C !important; /* Purple Text */
+    background-color: transparent !important;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-purple:hover {
+    background-color: #4A148C !important; /* Filled Purple */
+    color: #fff !important; /* White Text */
+}
+
+/* Input Fields */
+.form-control-lg {
+    font-size: 1.25rem !important;
+    padding: 0.75rem 1rem !important;
+    border-width: 2px !important;
+    border-radius: 0.5rem !important;
+}
+
+.form-control {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #FFD700 !important; /* Yellow Focus Border */
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5) !important; /* Yellow Glow */
+}
+
+/* Header */
+.block-header {
+    border-bottom: 4px solid #FFD700 !important; /* Yellow Divider */
+}
+
+/* Footer */
+.font-size-sm {
+    font-size: 0.85rem !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}

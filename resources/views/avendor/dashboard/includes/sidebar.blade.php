@@ -99,7 +99,12 @@
     <div class="js-sidebar-scroll">
       <!-- Side Navigation -->
       <div class="content-side">
-        <ul class="nav-main">
+            @if (App::getLocale() == 'ar')
+            <ul class="nav-main rtl pr-0">
+            @else
+            <ul class="nav-main">
+            @endif
+
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('vendor.dashboard') ? 'active' : '' }}" href="{{ route('vendor.dashboard') }}">
@@ -108,7 +113,7 @@
             </a>
           </li>
 
-          <li class="nav-main-heading">{{ trans('sidebar.school_info') }}</li>
+          <li class="nav-main-heading text-black">{{ trans('sidebar.school_info') }}</li>
           {{-- in class tag {{ (Route::is('students.index') || Route::is('students.create')) ? 'active' : '' }} --}}
           {{-- ========== side nav beigns from here ========== --}}
           {{-- <li class="nav-main-item">

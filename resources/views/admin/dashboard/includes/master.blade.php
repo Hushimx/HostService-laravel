@@ -1,9 +1,9 @@
 @include('admin.dashboard.includes.head')
     <!-- Page Container -->
     @if (App::getLocale() == 'ar')
-        <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay sidebar-r side-scroll page-header-fixed main-content-narrow">
+        <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay sidebar-r side-scroll page-header-fixed main-content-narrow bg-light-purple">
     @else
-        <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow">
+        <div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed main-content-narrow bg-light-purple">
     @endif
         @include('admin.dashboard.includes.sidebar-overlay')
         @include('admin.dashboard.includes.sidebar')

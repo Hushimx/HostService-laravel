@@ -39,7 +39,7 @@
         <link rel="stylesheet" id="css-main" href="{{asset('dashboard/assets/css/oneui.min.css')}}">
 
         <!-- Custom Styles -->
-        <link rel="stylesheet" href="{{asset('css/customStyles.css')}}">
+        <link rel="stylesheet" href="{{asset('assests/css/customStyles.css')}}">
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
         @livewireStyles
