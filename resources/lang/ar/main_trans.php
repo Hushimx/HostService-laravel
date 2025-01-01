@@ -64,6 +64,11 @@ return [
   'store_name' => 'اسم المتجر',
   'imageUrl' => 'صورة المتجر',
   'description' => 'وصف المتجر',
+  'select_section' => 'اختر القسم',
+  'sections' => 'الاقسام',
+  'section' => 'القسم',
+  'imageUrl' => 'صوره المتجر',
+  'bannerUrl' => 'خلية المتجر',
 
 
 ];

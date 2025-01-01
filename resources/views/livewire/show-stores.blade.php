@@ -18,6 +18,7 @@
         <th class="text-center">{{ trans('main_trans.imageUrl') }}</th>
         <th class="text-center">{{ trans('main_trans.store_name') }}</th>
         <th class="text-center">{{ trans('main_trans.description') }}</th>
+        <th class="text-center">{{ trans('main_trans.section') }}</th>
         <th class="text-center" style="width: 180px;">{{ trans('products.createdAt') }}</th>
         <th class="text-center" style="width: 180px;">{{ trans('grades.action') }}</th>
       </tr>
@@ -39,6 +40,7 @@
           </td>
           <td class="font-w600 font-size-sm text-center">{{ $store->name }}</td>
           <td class="font-w600 font-size-sm text-center">{{ $store->description ? $store->description : 'No description to show' }}</td>
+          <td class="font-w600 font-size-sm text-center">{{ $store->section->name }}</td>
           <td class="font-w600 font-size-sm text-center">
             {{-- <span>{{ $product->createdAt }}</span> --}}
             <span class="d-block">{{ \Carbon\Carbon::parse($store->createdAt)->diffForHumans() }}</span>

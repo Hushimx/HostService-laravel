@@ -56,20 +56,20 @@
           {{-- description --}}
           <div class="form-group mb-3">
             <label for="description">{{ trans('main_trans.description') }}</label>
-            <input id="description" type="text" name="description" class="form-control form-control-alt" value="{{ $store->description }}">
+            <textarea class="form-control form-control-alt" name="description" id="description" cols="30" rows="10">{{ $store->description }}</textarea>
             @error('description')
               <div class="alert alert-danger my-2">{{ $message }}</div>
             @enderror
           </div>
-          {{-- type --}}
+          {{-- store sections --}}
           <div class="form-group mb-3">
-            <label>{{ trans('products.categories') }}</label>
-            <select class="custom-select" id="categories" name="categoryId">
-              <option disabled selected>{{ trans('products.select_category') }}</option>
-              @foreach ($productCategories as $category)
-                <option value="{{ $category->id }}"
-                  @if ($category->id == $product->categoryId) selected @endif>
-                  {{ $category->name }}
+            <label for="sections">{{ trans('main_trans.sections') }}</label>
+            <select class="custom-select" id="sections" name="sectionId">
+              <option disabled selected>{{ trans('main_trans.select_section') }}</option>
+              @foreach ($storeSections as $section)
+                <option value="{{ $section->id }}"
+                  @if ($section->id == $store->sectionId) selected @endif>
+                  {{ $section->name }}
                 </option>
               @endforeach
             </select>
@@ -79,40 +79,40 @@
         <div class="col-xl-4 mb-3">
           {{-- imageUrl --}}
           <div class="form-group">
-            <label>{{ trans('products.image') }}</label>
+            <label>{{ trans('main_trans.imageUrl') }}</label>
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" data-toggle="custom-file-input" accept="image/*" name="image" id="product_image">
-              <label class="custom-file-label" for="product_image">{{ trans('courses.choose_image') }}</label>
+              <input type="file" class="custom-file-input" data-toggle="custom-file-input" accept="image/*" name="imageUrl" id="imageUrl">
+              <label class="custom-file-label" for="imageUrl">{{ trans('courses.choose_image') }}</label>
             </div>
-            <label>{{ trans('products.img_prev') }}</label>
-            @if ($product->image)
+            <label>{{ trans('main_trans.imageUrl') }}</label>
+            @if ($store->imageUrl)
               <div class="img-thumb">
-                @if(Storage::disk('products_images')->exists($product->image))
-                  <img id="product_image_preview" class="d-block mx-auto"
-                  src="{{ url('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                @if(Storage::disk('store_images')->exists($store->imageUrl))
+                  <img id="store_image_preview" class="d-block mx-auto"
+                  src="{{ url('storage/store_images/' . $store->imageUrl) }}" alt="{{ $store->name }}">
                 @else
-                  <img id="product_image_preview" class="d-block mx-auto"
-                  src="{{ url('storage/no-image.png') }}" alt="{{ $product->name }}">
+                  <img id="store_image_preview" class="d-block mx-auto"
+                  src="{{ url('storage/no-image.png') }}" alt="{{ $store->name }}">
                 @endif
               </div>
             @endif
           </div>
           {{-- bannerUrl --}}
           <div class="form-group">
-            <label>{{ trans('products.image') }}</label>
+            <label>{{ trans('main_trans.bannerUrl') }}</label>
             <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" data-toggle="custom-file-input" accept="image/*" name="image" id="product_image">
-              <label class="custom-file-label" for="product_image">{{ trans('courses.choose_image') }}</label>
+              <input type="file" class="custom-file-input" data-toggle="custom-file-input" accept="image/*" name="bannerUrl" id="bannerUrl">
+              <label class="custom-file-label" for="bannerUrl">{{ trans('courses.choose_image') }}</label>
             </div>
-            <label>{{ trans('products.img_prev') }}</label>
-            @if ($product->image)
+            <label>{{ trans('main_trans.bannerUrl') }}</label>
+            @if ($store->bannerUrl)
               <div class="img-thumb">
-                @if(Storage::disk('products_images')->exists($product->image))
-                  <img id="product_image_preview" class="d-block mx-auto"
-                  src="{{ url('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                @if(Storage::disk('store_images')->exists($store->bannerUrl))
+                  <img id="store_banner_preview" class="d-block mx-auto"
+                  src="{{ url('storage/store_images/' . $store->bannerUrl) }}" alt="{{ $store->name }}">
                 @else
-                  <img id="product_image_preview" class="d-block mx-auto"
-                  src="{{ url('storage/no-image.png') }}" alt="{{ $product->name }}">
+                  <img id="store_banner_preview" class="d-block mx-auto"
+                  src="{{ url('storage/no-image.png') }}" alt="{{ $store->name }}">
                 @endif
               </div>
             @endif
@@ -138,12 +138,15 @@
   <script>
     // this script is responsible for previwing the image after user select it
     // Select the file input and the image preview element
-    const imageInput = document.getElementById('product_image');
-    const preview = document.getElementById('product_image_preview');
+    const imageUrl = document.getElementById('imageUrl');
+    const previewImage = document.getElementById('store_image_preview');
 
-    if (imageInput) {
+    const bannerUrl = document.getElementById('bannerUrl');
+    const previewBanner = document.getElementById('store_banner_preview');
+
+    if (imageUrl) {
       // Add an event listener to handle when a file is selected
-      imageInput.addEventListener('change', function () {
+      imageUrl.addEventListener('change', function () {
         // Check if a file is selected
         if (this.files && this.files[0]) {
           // Create a new FileReader instance
@@ -152,17 +155,43 @@
           // Define the onload function that will execute once the file is read
           reader.onload = function (e) {
             // Set the src of the image preview element to the file data
-            preview.src = e.target.result;
+            previewImage.src = e.target.result;
             // Display the image element
-            preview.style.display = 'block';
+            previewImage.style.display = 'block';
           };
 
           // Read the file as a data URL (base64 encoded string)
           reader.readAsDataURL(this.files[0]);
         } else {
           // If no file is selected, hide the image preview
-          preview.style.display = 'none';
-          preview.src = ''; // Clear the src attribute
+          previewImage.style.display = 'none';
+          previewImage.src = ''; // Clear the src attribute
+        }
+      });
+    }
+
+    if (bannerUrl) {
+      // Add an event listener to handle when a file is selected
+      bannerUrl.addEventListener('change', function () {
+        // Check if a file is selected
+        if (this.files && this.files[0]) {
+          // Create a new FileReader instance
+          const reader = new FileReader();
+
+          // Define the onload function that will execute once the file is read
+          reader.onload = function (e) {
+            // Set the src of the image preview element to the file data
+            previewBanner.src = e.target.result;
+            // Display the image element
+            previewBanner.style.display = 'block';
+          };
+
+          // Read the file as a data URL (base64 encoded string)
+          reader.readAsDataURL(this.files[0]);
+        } else {
+          // If no file is selected, hide the image preview
+          previewBanner.style.display = 'none';
+          previewBanner.src = ''; // Clear the src attribute
         }
       });
     }

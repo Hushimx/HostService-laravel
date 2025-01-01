@@ -60,5 +60,10 @@ return [
   'store_name' => 'Name',
   'imageUrl' => 'Image',
   'description' => 'Description',
+  'select_section' => 'Select Section',
+  'sections' => 'Sections',
+  'section' => 'Section',
+  'imageUrl' => 'Store Image',
+  'bannerUrl' => 'Store Banner',
 
 ];

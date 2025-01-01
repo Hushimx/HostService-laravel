@@ -37,10 +37,17 @@ return [
         ],
 
         'products_images' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/products_images'),
-            'visibility' => 'public',
-            'throw' => false,
+          'driver' => 'local',
+          'root' => storage_path('app/public/products_images'),
+          'visibility' => 'public',
+          'throw' => false,
+        ],
+
+        'store_images' => [
+          'driver' => 'local',
+          'root' => storage_path('app/public/store_images'),
+          'visibility' => 'public',
+          'throw' => false,
         ],
 
         'public' => [
