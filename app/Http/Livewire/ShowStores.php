@@ -30,15 +30,15 @@ class ShowStores extends Component
 
     $vendorId = Auth::guard('vendors')->user()->id;
 
-    $query = Store::with(['city'])->where('vendorId', $vendorId);
+    $query = Store::with(['city', 'section'])->where('vendorId', $vendorId);
 
     if ($this->searchKey) {
       $query->where(function ($query) {
-        $query->orWhereHas('city', function ($q) {
-          $q->whereRaw('LOWER(cities.name) LIKE ?', ['%' . strtolower($this->searchKey) . '%']); // Specify the 'cities' table explicitly
+        $query->orWhereRaw('LOWER(stores.name) LIKE ?', ['%' . strtolower($this->searchKey) . '%']) // Search for store name
+          ->orWhereHas('city', function ($q) {
+            $q->whereRaw('LOWER(cities.name) LIKE ?', ['%' . strtolower($this->searchKey) . '%']); // Search in related 'cities' table
         });
       });
-
     }
 
     $this->searchResults = $query->paginate(10); // Paginate results
@@ -49,7 +49,7 @@ class ShowStores extends Component
   {
 
     $vendorId = Auth::guard('vendors')->user()->id;
-    $vendorServices = Store::with(['city'])->where('vendorId', $vendorId)->paginate(10);
+    $vendorServices = Store::with(['city', 'section'])->where('vendorId', $vendorId)->paginate(10);
 
     // Use searchResults if available, otherwise load default products
     return $this->searchResults ?: $vendorServices;

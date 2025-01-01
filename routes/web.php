@@ -94,6 +94,8 @@ function(){
 
     // stores
     Route::get('vendor-stores', [StoresController::class, 'index'])->name('stores.index');
+    Route::get('vendor-stores/edit/{storeId}', [StoresController::class, 'edit'])->name('stores.edit');
+    Route::put('vendor-stores/update/{store}', [StoresController::class, 'update'])->name('stores.update');
 
     // products Controller
     Route::resource('products', ProductController::class);
