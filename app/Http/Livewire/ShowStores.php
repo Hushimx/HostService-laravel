@@ -32,14 +32,6 @@ class ShowStores extends Component
 
     $query = Store::with(['city'])->where('vendorId', $vendorId);
 
-    // if ($this->searchKey) {
-    //   $query->where(function ($query) {
-    //     $query->orWhereHas('city', function ($q) {
-    //       $q->whereRaw('LOWER(cities.name) LIKE ?', ['%' . strtolower($this->searchKey) . '%']); // Specify the 'cities' table explicitly
-    //     });
-    //   });
-    // }
-
     if ($this->searchKey) {
       $query->where(function ($query) {
         $query->orWhereRaw('LOWER(stores.name) LIKE ?', ['%' . strtolower($this->searchKey) . '%']) // Search for store name

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class StoresController extends Controller
@@ -35,7 +36,7 @@ class StoresController extends Controller
    */
   public function show(string $id)
   {
-      //
+    //
   }
 
   /**
@@ -43,7 +44,8 @@ class StoresController extends Controller
    */
   public function edit(string $id)
   {
-      //
+    $store = Store::find($id);
+    return view('avendor.pages.stores.edit', compact('store'));
   }
 
   /**

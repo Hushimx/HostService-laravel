@@ -15,8 +15,8 @@
     <thead>
       <tr>
         <th class="text-center" style="width: 60px;">ID</th>
-        <th class="text-center">{{ trans('main_trans.store_name') }}</th>
         <th class="text-center">{{ trans('main_trans.imageUrl') }}</th>
+        <th class="text-center">{{ trans('main_trans.store_name') }}</th>
         <th class="text-center">{{ trans('main_trans.description') }}</th>
         <th class="text-center" style="width: 180px;">{{ trans('products.createdAt') }}</th>
         <th class="text-center" style="width: 180px;">{{ trans('grades.action') }}</th>
@@ -26,7 +26,6 @@
       @foreach ($stores as $store)
         <tr>
           <td class="text-center">{{ $loop->iteration }}</td>
-          <td class="font-w600 font-size-sm text-center">{{ $store->name }}</td>
           <td class="font-w600 font-size-sm text-center">
             @if (Storage::disk('products_images')->exists($store->imageUrl))
               <a href="{{ url('storage/products_images/'.$store->imageUrl) }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
@@ -38,6 +37,7 @@
               </a>
             @endif
           </td>
+          <td class="font-w600 font-size-sm text-center">{{ $store->name }}</td>
           <td class="font-w600 font-size-sm text-center">{{ $store->description ? $store->description : 'No description to show' }}</td>
           <td class="font-w600 font-size-sm text-center">
             {{-- <span>{{ $product->createdAt }}</span> --}}
@@ -45,7 +45,7 @@
             <span>{{ \Carbon\Carbon::parse($store->createdAt)->format('M d Y') }}</span>
           </td>
           <td class="font-w600 font-size-sm text-center">
-            <a class="btn btn-alt-primary" href="">
+            <a class="btn btn-alt-primary" href="{{ route('stores.edit', $store->id) }}">
               <i class="fa fa-edit mr-1"></i>
               <span>Edit</span>
             </a>
