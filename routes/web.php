@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\City;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoresController;
@@ -22,7 +21,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-
 Route::group(
   [
     'prefix' => LaravelLocalization::setLocale(),
@@ -34,8 +32,8 @@ function(){
     Route::view('/user/password/forget', 'auth/passwords/email')->name('password.forgetpassword');
 
     // Global Routes
-    Route::view('/', 'welcome');
-    Route::view('/home', 'welcome')->name('home');
+    Route::redirect('/', '/vendor/dashboard');
+    Route::redirect('/home', '/vendor/dashboard')->name('home');
 
 });
 
@@ -104,40 +102,6 @@ function(){
     Route::resource('products', ProductController::class);
 
 });
-
-/*
-|--------------------------------------------------------------------------
-| guest web Only - Admin
-|--------------------------------------------------------------------------
-| these routes for guest of admin can access only
-|
-|
-*/
-
-Route::group(
-  [
-    'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'guest:web']
-  ],
-function(){
-  // admin Authentication
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Fallback route
