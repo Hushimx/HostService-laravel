@@ -7,6 +7,7 @@ return [
     'data_edit_success' => 'تم تحديث البيانات بنجاح',
     'data_delete_success' => 'تم حذف البيانات بنجاح',
     'data_update_success' => 'تم تحديث البيانات بنجاح',
+    'password_update_success' => 'تم تحديث كلمة المرور بنجاح',
 
     // Failed Operations
     'data_save_fail' => 'خطا فى حفظ البيانات',

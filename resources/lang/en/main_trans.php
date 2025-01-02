@@ -66,4 +66,15 @@ return [
   'imageUrl' => 'Store Image',
   'bannerUrl' => 'Store Banner',
 
+  // profile
+  'edit-profile' => 'Edit Profile',
+  'Back to Dashboard' => 'Back to Dashboard',
+  'Name' => 'Name',
+  'Phone Number' => 'Phone Number',
+  'Address' => 'Address',
+  'Location Url' => 'Location Url',
+  'Saving...' => 'Saving...',
+  'Update' => 'Update',
+
+
 ];

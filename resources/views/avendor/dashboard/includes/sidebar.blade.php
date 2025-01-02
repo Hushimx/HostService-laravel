@@ -133,36 +133,43 @@
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('products.index') ? 'active' : '' }}" href="{{ route('products.index') }}">
-                <i class="nav-main-link-icon fa fa-user-graduate @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+                <i class="nav-main-link-icon fa fa-box-open @if (App::getLocale() == 'ar') ml-2 @endif"></i>
                 <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('products.products') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('deliveryOrders.index') ? 'active' : '' }}" href="{{ route('deliveryOrders.index') }}">
-              <i class="nav-main-link-icon fa fa-laptop @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <i class="nav-main-link-icon fa fa-walking @if (App::getLocale() == 'ar') ml-2 @endif"></i>
               <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.delivery-orders') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('services.index') ? 'active' : '' }}" href="{{ route('services.index') }}">
-              <i class="nav-main-link-icon fa fa-chalkboard-teacher @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <i class="nav-main-link-icon fa fa-hand-holding-heart @if (App::getLocale() == 'ar') ml-2 @endif"></i>
               <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.services') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('service.orders.index') ? 'active' : '' }}" href="{{ route('service.orders.index') }}">
-              <i class="nav-main-link-icon fa fa-question-circle @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <i class="nav-main-link-icon fab fa-servicestack @if (App::getLocale() == 'ar') ml-2 @endif"></i>
               <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.service-orders') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('stores.index') ? 'active' : '' }}" href="{{ route('stores.index') }}">
-              <i class="nav-main-link-icon fa fa-question-circle @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <i class="nav-main-link-icon fa fa-cart-arrow-down @if (App::getLocale() == 'ar') ml-2 @endif"></i>
               <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.stores') }}</span>
+            </a>
+          </li>
+
+          <li class="nav-main-item">
+            <a class="nav-main-link {{ Route::is('profile.edit') ? 'active' : '' }}" href="{{ route('profile.edit') }}">
+              <i class="nav-main-link-icon fa fa-user-circle @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.edit-profile') }}</span>
             </a>
           </li>
 

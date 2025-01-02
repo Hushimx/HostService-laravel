@@ -70,5 +70,15 @@ return [
   'imageUrl' => 'صوره المتجر',
   'bannerUrl' => 'خلية المتجر',
 
+  // profile
+  'edit-profile' => 'تعديل الحساب',
+  'Back to Dashboard' => 'الرجوع للوحة التحكم',
+  'Name' => 'الاسم',
+  'Phone Number' => 'رقم الهاتف',
+  'Address' => 'العنوان',
+  'Location Url' => 'رابط العنوان',
+  'Saving...' => 'جارى الحفظ ...',
+  'Update' => 'تحديث',
+
 
 ];
