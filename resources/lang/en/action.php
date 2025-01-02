@@ -7,6 +7,7 @@ return [
     'data_edit_success' => 'Data Updated Successfuly',
     'data_delete_success' => 'Data Deleted Successfuly',
     'data_update_success' => 'Updated Successfuly!',
+    'password_update_success' => 'Password updated successfully!',
 
     // Failed Operations
     'data_save_fail' => 'Failed To Store Your Data !',

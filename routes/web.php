@@ -97,6 +97,9 @@ function(){
     Route::get('vendor-stores/edit/{storeId}', [StoresController::class, 'edit'])->name('stores.edit');
     Route::put('vendor-stores/update/{store}', [StoresController::class, 'update'])->name('stores.update');
 
+    // profile edit
+    Route::view('edit/profile', 'avendor.profile-edit')->name('profile.edit');
+
     // products Controller
     Route::resource('products', ProductController::class);
 

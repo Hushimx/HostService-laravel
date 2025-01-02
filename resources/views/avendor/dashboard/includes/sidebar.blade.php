@@ -166,6 +166,13 @@
             </a>
           </li>
 
+          <li class="nav-main-item">
+            <a class="nav-main-link {{ Route::is('profile.edit') ? 'active' : '' }}" href="{{ route('profile.edit') }}">
+              <i class="nav-main-link-icon fa fa-question-circle @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.edit-profile') }}</span>
+            </a>
+          </li>
+
         </ul>
       </div>
       <!-- END Side Navigation -->

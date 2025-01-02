@@ -18,6 +18,9 @@ class Vendor extends Authenticatable
 
   protected $fillable = ['name', 'email', 'password', 'phoneNo', 'address', 'cityId'];
 
+  const CREATED_AT = 'createdAt'; // If your `created_at` column is also camelCase
+  const UPDATED_AT = 'updatedAt';
+
   protected static function boot()
   {
     parent::boot();
