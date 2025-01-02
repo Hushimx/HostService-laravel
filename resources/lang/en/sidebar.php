@@ -3,7 +3,7 @@
 return [
 
     'grades' => 'Grades',
-    'school_info' => 'School Info',
+    'vendor_info' => 'Vendor Information',
     'dashboard' => 'Dashboard',
     '' => '',
     '' => '',

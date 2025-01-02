@@ -99,21 +99,17 @@
     <div class="js-sidebar-scroll">
       <!-- Side Navigation -->
       <div class="content-side">
-            @if (App::getLocale() == 'ar')
-            <ul class="nav-main rtl pr-0">
-            @else
-            <ul class="nav-main">
-            @endif
 
+          <ul class="nav-main @if (App::getLocale() == 'ar') rtl pr-0  @endif">
 
-          <li class="nav-main-item">
+            <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('vendor.dashboard') ? 'active' : '' }}" href="{{ route('vendor.dashboard') }}">
-              <i class="nav-main-link-icon si si-speedometer"></i>
-              <span class="nav-main-link-name">{{ trans('sidebar.dashboard') }}</span>
+              <i class="nav-main-link-icon si si-speedometer @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('sidebar.dashboard') }}</span>
             </a>
           </li>
 
-          <li class="nav-main-heading text-black">{{ trans('sidebar.school_info') }}</li>
+          <li class="nav-main-heading text-black @if (App::getLocale() == 'ar') text-right  @endif">{{ trans('sidebar.vendor_info') }}</li>
           {{-- in class tag {{ (Route::is('students.index') || Route::is('students.create')) ? 'active' : '' }} --}}
           {{-- ========== side nav beigns from here ========== --}}
           {{-- <li class="nav-main-item">
@@ -137,36 +133,36 @@
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('products.index') ? 'active' : '' }}" href="{{ route('products.index') }}">
-                <i class="nav-main-link-icon fa fa-user-graduate"></i>
-                <span class="nav-main-link-name">{{ trans('products.products') }}</span>
+                <i class="nav-main-link-icon fa fa-user-graduate @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+                <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('products.products') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('deliveryOrders.index') ? 'active' : '' }}" href="{{ route('deliveryOrders.index') }}">
-              <i class="nav-main-link-icon fa fa-laptop"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.delivery-orders') }}</span>
+              <i class="nav-main-link-icon fa fa-laptop @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.delivery-orders') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('services.index') ? 'active' : '' }}" href="{{ route('services.index') }}">
-              <i class="nav-main-link-icon fa fa-chalkboard-teacher"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.services') }}</span>
+              <i class="nav-main-link-icon fa fa-chalkboard-teacher @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.services') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('service.orders.index') ? 'active' : '' }}" href="{{ route('service.orders.index') }}">
-              <i class="nav-main-link-icon fa fa-question-circle"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.service-orders') }}</span>
+              <i class="nav-main-link-icon fa fa-question-circle @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.service-orders') }}</span>
             </a>
           </li>
 
           <li class="nav-main-item">
             <a class="nav-main-link {{ Route::is('stores.index') ? 'active' : '' }}" href="{{ route('stores.index') }}">
-              <i class="nav-main-link-icon fa fa-question-circle"></i>
-              <span class="nav-main-link-name">{{ trans('main_trans.stores') }}</span>
+              <i class="nav-main-link-icon fa fa-question-circle @if (App::getLocale() == 'ar') ml-2 @endif"></i>
+              <span class="nav-main-link-name @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.stores') }}</span>
             </a>
           </li>
 
