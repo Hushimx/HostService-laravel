@@ -5,6 +5,7 @@ namespace App\Http\Controllers\vendors;
 use Illuminate\Http\Request;
 use App\Models\DeliveryOrder;
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryOrderItem;
 use Illuminate\Support\Facades\Auth;
 
 class DeliveryOrdersController extends Controller
@@ -17,8 +18,12 @@ class DeliveryOrdersController extends Controller
 
   public function deliveryOrderItems($id)
   {
-    $vendorId = Auth::guard('vendors')->user()->id;
-    $deliveryOrdersItems = DeliveryOrder::with('deliveryOrderItemsVendor')->where('id', $id)->first();
+    $deliveryOrdersItems = DeliveryOrderItem::with('deliveryOrder')->where('orderId', $id)->first();
+
+    // Check if no DeliveryOrderItem is found or if the related DeliveryOrder is null
+    if (!$deliveryOrdersItems || !$deliveryOrdersItems->deliveryOrder || $deliveryOrdersItems->deliveryOrder->clientName == null) {
+      return back()->with('error', 'No orders found for this ID.');
+    }
 
     return view('avendor.pages.delivery-orders.delivery-order-items', compact('deliveryOrdersItems'));
   }

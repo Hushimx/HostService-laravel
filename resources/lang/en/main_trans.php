@@ -25,7 +25,7 @@ return [
   'name' => 'Name',
   'city' => 'City',
   'hotelName' => 'Hotel Name',
-  'storeSlug' => 'Store Slug',
+  'storeName' => 'Store Name',
   'notes' => 'Notes',
   'status' => 'Status',
   'clientName' => 'Client Name',

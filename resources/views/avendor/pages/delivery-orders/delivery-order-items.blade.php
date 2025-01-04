@@ -21,27 +21,27 @@
         <h2 class="content-heading mb-4 @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.delivery_order_info') }}</h2>
         <div class="row" @if (App::getLocale() == 'ar') dir="rtl" @endif>
           <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.clientName') }}</span>: {{ $deliveryOrdersItems->clientName }}</p>
+            <p><span>{{ trans('main_trans.clientName') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->clientName }}</p>
           </div>
           <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.clientNumber') }}</span>: {{ $deliveryOrdersItems->clientNumber }}</p>
+            <p><span>{{ trans('main_trans.clientNumber') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->clientNumber }}</p>
           </div>
           <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.hotelName') }}</span>: {{ $deliveryOrdersItems->hotelName }}</p>
+            <p><span>{{ trans('main_trans.hotelName') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->hotelName }}</p>
           </div>
           <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.paymentMethod') }}</span>: {{ $deliveryOrdersItems->paymentMethod }}</p>
+            <p><span>{{ trans('main_trans.paymentMethod') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->paymentMethod }}</p>
           </div>
           @if ($deliveryOrdersItems->notes)
             <div class="col-lg-6">
-              <p><span>{{ trans('main_trans.notes') }}</span>: {{ $deliveryOrdersItems->notes }}</p>
+              <p><span>{{ trans('main_trans.notes') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->notes }}</p>
             </div>
           @endif
           <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.status') }}</span>: {{ $deliveryOrdersItems->status }}</p>
+            <p><span>{{ trans('main_trans.status') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->status }}</p>
           </div>
           <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.total') }}</span>: {{ $deliveryOrdersItems->total }}</p>
+            <p><span>{{ trans('main_trans.total') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->total }}</p>
           </div>
         </div>
       </div>
@@ -68,15 +68,13 @@
             </tr>
           </thead>
           <tbody id="tbody">
-            @foreach ($deliveryOrdersItems->deliveryOrderItemsVendor as $deliveryOrdersItem)
-              <tr>
-                <td class="text-center">{{ $loop->iteration }}</td>
-                <td class="font-w600 font-size-sm">{{ $deliveryOrdersItem->productTitle }}</td>
-                <td class="font-w600 font-size-sm">{{ $deliveryOrdersItem->price }}</td>
-                <td class="font-w600 font-size-sm">{{ $deliveryOrdersItem->quantity ? $deliveryOrdersItem->quantity : '' }}</td>
-                <td class="font-w600 font-size-sm">{{ $deliveryOrdersItem->price * $deliveryOrdersItem->quantity }}</td>
-              </tr>
-            @endforeach
+            <tr>
+              <td class="text-center">{{ $deliveryOrdersItems->id }}</td>
+              <td class="font-w600 font-size-sm">{{ $deliveryOrdersItems->productTitle }}</td>
+              <td class="font-w600 font-size-sm">{{ $deliveryOrdersItems->price }}</td>
+              <td class="font-w600 font-size-sm">{{ $deliveryOrdersItems->quantity ? $deliveryOrdersItems->quantity : '' }}</td>
+              <td class="font-w600 font-size-sm">{{ $deliveryOrdersItems->price * $deliveryOrdersItems->quantity }}</td>
+            </tr>
           </tbody>
         </table>
       </div>
