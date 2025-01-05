@@ -10,27 +10,30 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DeliveryOrder extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $table = 'delivery_orders';
+  protected $table = 'delivery_orders';
 
-    // realtion - one deliveryOrder many delivery_order_items
-    public function deliveryOrderItems() {
-        return $this->hasMany(DeliveryOrderItem::class, 'orderId');
-    }
+  // realtion - one deliveryOrder many delivery_order_items
+  public function deliveryOrderItems() {
+    return $this->hasMany(DeliveryOrderItem::class, 'orderId');
+  }
 
-    // gets all deliveryOrderItems where vendore id = user id
-    public function deliveryOrderItemsVendor()
-    {
-        return $this->hasMany(DeliveryOrderItem::class, 'orderId', 'id')
-            ->where('vendorId', Auth::guard('vendors')->user()->id);
-    }
+  // gets all deliveryOrderItems where vendore id = user id
+  public function deliveryOrderItemsVendor()
+  {
+    return $this->hasMany(DeliveryOrderItem::class, 'orderId', 'id')
+          ->where('vendorId', Auth::guard('vendors')->user()->id);
+  }
 
-    // has one city
-    public function city()
-    {
-      return $this->belongsTo(City::class, 'cityId', 'id'); // 'cityId' on delivery_orders, 'id' on cities
-    }
+  // has one city
+  public function city()
+  {
+    return $this->belongsTo(City::class, 'cityId', 'id'); // 'cityId' on delivery_orders, 'id' on cities
+  }
 
+  public function store() {
+    return $this->belongsTo(Store::class, 'storeId');
+  }
 
 }

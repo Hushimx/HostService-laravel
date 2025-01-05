@@ -16,7 +16,7 @@
         <th class="text-center">{{ trans('main_trans.clientName') }}</th>
         <th class="text-center">{{ trans('main_trans.city') }}</th>
         <th class="text-center">{{ trans('main_trans.hotelName') }}</th>
-        <th class="text-center">{{ trans('main_trans.storeSlug') }}</th>
+        <th class="text-center">{{ trans('main_trans.storeName') }}</th>
         <th class="text-center">{{ trans('main_trans.notes') }}</th>
         <th class="text-center">{{ trans('main_trans.status') }}</th>
         <th class="text-center">{{ trans('products.createdAt') }}</th>
@@ -25,18 +25,17 @@
     </thead>
     <tbody id="tbody">
       @foreach ($deliveryOrders as $order)
-        @if ($order->deliveryOrder)
         <tr>
-          <td class="text-center">{{ $order->deliveryOrder->id }}</td>
-          <td class="font-w600 font-size-sm">{{ $order->deliveryOrder->clientName }}</td>
+          <td class="text-center">{{ $order->id }}</td>
+          <td class="font-w600 font-size-sm">{{ $order->clientName }}</td>
           <td class="font-w600 font-size-sm">{{ $order->city->name }}</td>
-          <td class="font-w600 font-size-sm">{{ $order->deliveryOrder->hotelName }}</td>
-          <td class="font-w600 font-size-sm">{{ $order->deliveryOrder->storeSlug }}</td>
-          <td class="font-w600 font-size-sm">{{ $order->deliveryOrder->notes ? $order->deliveryOrder->notes : 'no notes' }}</td>
+          <td class="font-w600 font-size-sm">{{ $order->hotelName }}</td>
+          <td class="font-w600 font-size-sm">{{ $order->store->name }}</td>
+          <td class="font-w600 font-size-sm">{{ $order->notes ? $order->notes : 'no notes' }}</td>
           <td class="font-w600 font-size-sm text-white text-center">
-          <span @if ($order->deliveryOrder->status) class='bg-success p-1 rounded d-block' @else class='bg-danger p-1 rounded d-block' @endif>
-            @if ($order->deliveryOrder->status)
-              {{ $order->deliveryOrder->status }}
+          <span @if ($order->status) class='bg-success p-1 rounded d-block' @else class='bg-danger p-1 rounded d-block' @endif>
+            @if ($order->status)
+              {{ $order->status }}
             @else
               {{ 'No Status Available' }}
             @endif
@@ -44,16 +43,15 @@
           </td>
           <td class="font-w600 font-size-sm text-center">
             {{-- <span>{{ $product->createdAt }}</span> --}}
-            <span class="d-block">{{ \Carbon\Carbon::parse($order->deliveryOrder->createdAt)->diffForHumans() }}</span>
-            <span>{{ \Carbon\Carbon::parse($order->deliveryOrder->updatedAt)->format('M d Y') }}</span>
+            <span class="d-block">{{ \Carbon\Carbon::parse($order->createdAt)->diffForHumans() }}</span>
+            <span>{{ \Carbon\Carbon::parse($order->updatedAt)->format('M d Y') }}</span>
           </td>
           <td class="font-w600 font-size-sm">
-            <a class="btn btn-primary d-block m-auto" href="{{ route('deliveryOrders.deliveryOrderItems', $order->orderId) }}">
+            <a class="btn btn-primary d-block m-auto" href="{{ route('deliveryOrders.deliveryOrderItems', $order->id) }}">
               {{ trans('main_trans.delivery-orders-items') }}
             </a>
           </td>
         </tr>
-        @endif
       @endforeach
     </tbody>
   </table>

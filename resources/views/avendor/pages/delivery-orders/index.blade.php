@@ -26,10 +26,7 @@
   <div class="content">
     <div class="block block-rounded">
       <div class="block-content block-content-full">
-
-        {{-- errors And Alerts --}}
         <x-alert />
-
         @livewire('delivery-orders')
       </div>
     </div>
