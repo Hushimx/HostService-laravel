@@ -58,6 +58,11 @@ return [
   'status' => 'الحالة',
   'notes' => 'الملاحظات',
   'total' => 'المجموع',
+  //statuses of orders
+  'PENDING' => 'قيد الانتظار',
+  'IN_PROGRESS' => 'جارى التنفيذ',
+  'COMPLETED' => 'مكتمل',
+  'CANCELED' => 'تم الالغاء',
 
   // stores
   'stores' => 'المتاجر',

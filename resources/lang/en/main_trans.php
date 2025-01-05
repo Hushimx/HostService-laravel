@@ -54,6 +54,11 @@ return [
   'status' => 'Status',
   'notes' => 'Notes',
   'total' => 'Total',
+  //statuses of orders
+  'PENDING' => 'PENDING',
+  'IN_PROGRESS' => 'IN PROGRESS',
+  'COMPLETED' => 'COMPLETED',
+  'CANCELED' => 'CANCELED',
 
   // stores
   'stores' => 'Stores',
