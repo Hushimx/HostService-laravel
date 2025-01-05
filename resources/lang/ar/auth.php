@@ -14,7 +14,7 @@ return [
 
     'failed' => 'بيانات الاعتماد هذه لا تطابق سجلاتنا',
     'password' => 'الرقم السرى الذى ادخلته غير صحيح',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'عدد محاولات تسجيل الدخول كبير جدًا. يرجى المحاولة مرة أخرى بعد :seconds ثانية.',
     'logout' => 'تسجيل الخروج',
 
 ];
