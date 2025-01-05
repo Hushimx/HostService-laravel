@@ -28,24 +28,18 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',        // Name must be a required string with a maximum length of 255
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',           // Image must be a required string (or a path/URL)
             'price' => 'required|numeric|min:0',        // Price must be required, numeric, and non-negative
-            'approve' => 'nullable|string',            // Approve must be a required boolean (true or false)
             'storeId' => 'required|integer|exists:stores,id',
-            'categoryId' => 'required|integer|exists:Products_Category,id', // categoryId must exist in Products_Category table
+            'categoryId' => 'nullable|integer|exists:Products_Category,id', // categoryId must exist in Products_Category table
         ]);
 
         $newProduct = new Product();
 
         // if there is image save it
         if ($request->hasFile('image')) {
-            $imageFile = $request->file('image');
-            $imageGenaratedName = time() . '_' . $imageFile->getClientOriginalName();
-            $path = $imageFile->storeAs('products_images', $imageGenaratedName, 'public');
-            $newProduct->image = $path;
-        }
-
-        // if there is approve set it
-        if ($request->approve) {
-            $newProduct->aproved = 1;
+          $imageFile = $request->file('image');
+          $imageGenaratedName = time() . '_' . $imageFile->getClientOriginalName();
+          $path = $imageFile->storeAs('products_images', $imageGenaratedName, 'public');
+          $newProduct->image = $path;
         }
 
         // Save the New Record in question table
@@ -84,9 +78,8 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',        // Name must be a required string with a maximum length of 255
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'price' => 'required|numeric|min:0',        // Price must be required, numeric, and non-negative
-            'approve' => 'nullable|string',            // Approve must be a required boolean (true or false)
             'storeId' => 'required|integer|exists:stores,id',
-            'categoryId' => 'required|integer|exists:Products_Category,id', // categoryId must exist in Products_Category table
+            'categoryId' => 'nullable|integer|exists:Products_Category,id', // categoryId must exist in Products_Category table
         ]);
 
         // if there is image save it
@@ -95,11 +88,6 @@ class ProductController extends Controller
             $imageGenaratedName = time() . '_' . $imageFile->getClientOriginalName();
             $path = $imageFile->storeAs('/products_images', $imageGenaratedName, 'public');
             $product->image = $path;
-        }
-
-        // if there is approve set it
-        if ($request->approve) {
-            $product->aprove = 1;
         }
 
         // Save the New Record in question table
