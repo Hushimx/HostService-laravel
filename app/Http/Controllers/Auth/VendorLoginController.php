@@ -30,7 +30,7 @@ class VendorLoginController extends Controller
       return redirect()->intended('/vendor/dashboard');
     }
 
-    return back()->withErrors(['email' => 'The provided credentials are incorrect.']);
+    return back()->withErrors(['email' => trans('auth.failed')]);
   }
 
   public function logout(Request $request)

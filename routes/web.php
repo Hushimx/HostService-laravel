@@ -28,7 +28,7 @@ Route::group(
   ],
 function(){
     // users Authentication
-    Auth::routes();
+    Auth::routes(['guard' => 'vendors']);
     Route::view('/user/password/forget', 'auth/passwords/email')->name('password.forgetpassword');
 
     // Global Routes
