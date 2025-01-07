@@ -41,7 +41,7 @@ class vendorsDashboardController extends Controller
     $totalProfit = $totalServiceOrders + $totalDeleiveryProfit;
 
     $user = Vendor::with('city')->find($vendorId);
-    $currencyCode = $user->city->country->code;
+    $currencyCode = $user->city->country->currency;
     return view('avendor.dashboard', compact('deliveryOrders', 'serviceOrders', 'totalProfit', 'currencyCode'));
   }
 }
