@@ -55,6 +55,5 @@
       @endforeach
     </tbody>
   </table>
-  <!-- END Dynamic Table Full -->
   {{ $deliveryOrders->links() }}
 </div>

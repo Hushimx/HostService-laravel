@@ -60,21 +60,21 @@
                         </div>
                         {{-- image --}}
                         <div class="col-xl-12 mb-3">
-                            <div class="form-group mb-3">
-                                <label>{{ trans('products.image') }}</label>
-                                <div class="custom-file">
-                                <input type="file" class="custom-file-input" data-toggle="custom-file-input" accept="image/*"
-                                    name="image" id="product_image">
-                                <label class="custom-file-label" for="product_image">{{ trans('courses.choose_image') }}</label>
-                                </div>
+                          <div class="form-group mb-3">
+                            <label>{{ trans('products.image') }}</label>
+                            <div class="custom-file">
+                            <input type="file" class="custom-file-input" data-toggle="custom-file-input" accept="image/*"
+                                name="image" id="product_image">
+                            <label class="custom-file-label" for="product_image">{{ trans('courses.choose_image') }}</label>
                             </div>
-                            <div class="form-group">
-                                <label>{{ trans('products.img_prev') }}</label>
-                                <div class="w-100">
-                                    <img id="product_image_preview" class="d-block mx-auto img-fluid"
-                                    src="{{ url('storage/no-image.png') }}" alt="image preview">
-                                </div>
+                          </div>
+                          <div class="form-group">
+                            <label>{{ trans('products.img_prev') }}</label>
+                            <div class="w-100">
+                                <img id="product_image_preview" class="d-block mx-auto img-fluid"
+                                src="{{ url('storage/no-image.png') }}" alt="image preview">
                             </div>
+                          </div>
                         </div>
                         {{-- price --}}
                         <div class="col-xl-6">
@@ -84,35 +84,25 @@
                               name="price" placeholder="{{ trans('products.price') }}">
                           </div>
                         </div>
-                        {{-- approve --}}
-                        <div class="col-xl-6">
-                          <div class="form-group mb-3">
-                            <label>{{ trans('products.approve') }}</label>
-                            <div class="custom-control custom-switch mb-1">
-                              <input type="checkbox" class="custom-control-input" id="approve" name="approve" {{ old('approve') ? 'checked' : '' }}>
-                              <label class="custom-control-label" for="approve">Approved</label>
-                            </div>
-                          </div>
-                        </div>
                         {{-- product Categories --}}
                         <div class="col-lg-12 mb-3">
-                            <label>{{ trans('products.categories') }}</label>
-                            <select class="custom-select" id="categories" name="categoryId">
-                              <option disabled selected>{{ trans('products.select_category') }}</option>
-                              @foreach ($productCategories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                              @endforeach
-                            </select>
+                          <label>{{ trans('products.categories') }}</label>
+                          <select class="custom-select" id="categories" name="categoryId">
+                            <option disabled selected>{{ trans('products.select_category') }}</option>
+                            @foreach ($productCategories as $category)
+                              <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                          </select>
                         </div>
                         {{-- vendor Stores --}}
                         <div class="col-lg-12 mb-3">
-                            <label>{{ trans('products.stores') }}</label>
-                            <select class="custom-select" id="storeId" name="storeId">
-                              <option disabled selected>{{ trans('products.select_store') }}</option>
-                              @foreach ($vendorStores as $store)
-                                <option value="{{ $store->id }}">{{ $store->name }}</option>
-                              @endforeach
-                            </select>
+                          <label>{{ trans('products.stores') }}</label>
+                          <select class="custom-select" id="storeId" name="storeId">
+                            <option disabled selected>{{ trans('products.select_store') }}</option>
+                            @foreach ($vendorStores as $store)
+                              <option value="{{ $store->id }}">{{ $store->name }}</option>
+                            @endforeach
+                          </select>
                         </div>
                       </div>
                     </div>

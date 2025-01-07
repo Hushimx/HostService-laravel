@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\VendorLoginController;
+use App\Http\Controllers\vendorsDashboardController;
 use App\Http\Controllers\vendors\ServiceOrdersController;
 use App\Http\Controllers\vendors\DeliveryOrdersController;
 use App\Http\Controllers\vendors\VendorServicesController;
@@ -28,7 +29,7 @@ Route::group(
   ],
 function(){
     // users Authentication
-    Auth::routes();
+    Auth::routes(['guard' => 'vendors']);
     Route::view('/user/password/forget', 'auth/passwords/email')->name('password.forgetpassword');
 
     // Global Routes
@@ -69,14 +70,15 @@ function(){
 */
 
 Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'vendor']
-    ],
+  [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'vendor']
+  ],
 function(){
 
     // vendor dashboard
-    Route::view('/vendor/dashboard', 'avendor.dashboard')->name('vendor.dashboard');
+    Route::get('/vendor/dashboard', [vendorsDashboardController::class, 'index'])->name('vendor.dashboard');
+
     Route::post('/vendor/logout', [VendorLoginController::class, 'logout'])->name('vendor.logout');
 
     // deliveryOrders

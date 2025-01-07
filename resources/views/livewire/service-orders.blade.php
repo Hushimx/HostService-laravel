@@ -31,9 +31,17 @@
           <td class="font-w600 font-size-sm text-center">{{ $serviceOrders->room->hotel->name }}</td>
           <td class="font-w600 font-size-sm text-white text-center">
             <span @if ($serviceOrders->status) class='bg-success p-1 rounded d-block' @else class='bg-danger p-1 rounded d-block' @endif>
-              @if ($serviceOrders->status) <i class="fa fa-fw fa-check-circle fa-fw mr-1"></i>
-              @else <i class="fa fa-fw fa-times-circle fa-fw mr-1"></i> @endif
-              {{ $serviceOrders->status ? trans('products.approve') : trans('courses.needApprove') }}
+              @if ($serviceOrders->status == "PENDING")
+                {{ trans('main_trans.PENDING') }}
+              @elseif ($serviceOrders->status == "IN_PROGRESS")
+                {{ trans('main_trans.IN_PROGRESS') }}
+              @elseif ($serviceOrders->status == "COMPLETED")
+                {{ trans('main_trans.COMPLETED') }}
+              @elseif ($serviceOrders->status == "CANCELED")
+                {{ trans('main_trans.CANCELED') }}
+              @else
+                {{ $serviceOrders->status }}
+              @endif
             </span>
           </td>
           <td class="font-w600 font-size-sm text-center">{{ $serviceOrders->notes ? $serviceOrders->notes : 'No Notes to show' }}</td>
