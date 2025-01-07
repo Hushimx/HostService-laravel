@@ -20,6 +20,13 @@ return [
   'Copyright' => 'جميع الحقوق محفوظة ',
   'Name_Programer' => 'محمود يسرى سوفت',
 
+  // dashboard
+  'Delivery Orders' => 'طلبات التوصيل',
+  'Service Orders' => 'طلبات الخدمات',
+  'View all orders' => 'عرض كل الطلبات',
+  'View all services Orders' => 'عرض كل طلبات الخدمات',
+  'Profit' => 'الارباح',
+
   // delivery Orders section
   'delivery-orders' => 'طلبات التوصيل',
   'delivery-orders-items' => 'عرض الطلبات',

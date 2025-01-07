@@ -3,6 +3,7 @@ namespace App\Models;
 
 use App\Models\City;
 use App\Models\Store;
+use App\Models\Country;
 use App\Models\Product;
 use App\Models\DeliveryOrderItem;
 use Laravel\Sanctum\HasApiTokens;
@@ -32,7 +33,7 @@ class Vendor extends Authenticatable
 
   public function city()
   {
-    return $this->belongsTo(City::class);
+    return $this->belongsTo(City::class, 'cityId');
   }
 
   public function products()
@@ -55,6 +56,10 @@ class Vendor extends Authenticatable
   public function services()
   {
     return $this->hasMany(Service::class, 'serviceId');
+  }
+
+  public function country() {
+    return $this->hasOne(Country::class, 'countryId');
   }
 
 }

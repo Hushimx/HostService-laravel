@@ -19,6 +19,13 @@ return [
   'login' => 'Login',
   'logout'  => 'Logout',
 
+  // dashboard
+  'Delivery Orders' => 'Delivery Orders',
+  'Service Orders' => 'Service Orders',
+  'View all orders' => 'View all orders',
+  'View all services Orders' => 'View all services orders',
+  'Profit' => 'Profit',
+
   // delivery Orders section
   'delivery-orders' => 'Delivery Orders',
   'delivery-orders-items' => 'Show Orders',
