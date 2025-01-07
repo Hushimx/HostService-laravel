@@ -3,7 +3,8 @@
 @section('content')
 <!-- Main Container -->
 <main id="main-container">
-  <!-- Hero -->
+
+  <!-- Hero Section -->
   <x-hero>
     <x-slot name="title">
       {{ trans('main_trans.view') }} <small class="font-size-base font-w400 text-muted">{{ trans('main_trans.delivery-orders-items') }}</small>
@@ -14,73 +15,92 @@
     <li class="breadcrumb-item">{{ trans('main_trans.view') }} {{ trans('main_trans.delivery-orders-items') }}</li>
   </x-hero>
 
-  <!-- Page Content -->
+  <!-- Order Details Section -->
   <div class="content">
     <div class="block block-rounded">
       <div class="block-content block-content-full">
-        <h2 class="content-heading mb-4 @if (App::getLocale() == 'ar') text-right @endif">{{ trans('main_trans.delivery_order_info') }}</h2>
-        <div class="row" @if (App::getLocale() == 'ar') dir="rtl" @endif>
-          <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.clientName') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->clientName }}</p>
-          </div>
-          <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.clientNumber') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->clientNumber }}</p>
-          </div>
-          <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.hotelName') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->hotelName }}</p>
-          </div>
-          <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.paymentMethod') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->paymentMethod }}</p>
-          </div>
-          @if ($deliveryOrdersItems->notes)
-            <div class="col-lg-6">
-              <p><span>{{ trans('main_trans.notes') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->notes }}</p>
-            </div>
-          @endif
-          <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.status') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->status }}</p>
-          </div>
-          <div class="col-lg-6">
-            <p><span>{{ trans('main_trans.total') }}</span>: {{ $deliveryOrdersItems->deliveryOrder->total }}</p>
+        <div class="bg-light p-3 rounded mb-4">
+          <h3 class="font-w700 mb-3 text-center {{ App::getLocale() == 'ar' ? 'text-right' : '' }}">{{ trans('main_trans.delivery_order_info') }}</h3>
+          <div class="row" {{ App::getLocale() == 'ar' ? 'dir=rtl' : '' }}>
+            @foreach ([
+              'clientName' => $deliveryOrdersItems->deliveryOrder->clientName,
+              'clientNumber' => $deliveryOrdersItems->deliveryOrder->clientNumber,
+              'hotelName' => $deliveryOrdersItems->deliveryOrder->hotelName,
+              'paymentMethod' => $deliveryOrdersItems->deliveryOrder->paymentMethod,
+              'notes' => $deliveryOrdersItems->deliveryOrder->notes,
+              'status' => $deliveryOrdersItems->deliveryOrder->status,
+              'total' => $deliveryOrdersItems->deliveryOrder->total
+            ] as $key => $value)
+              @if ($value || $key !== 'notes')
+                <div class="col-lg-6 mb-2">
+                  <p><strong>{{ trans("main_trans.$key") }}</strong>: <span class="text-secondary">{{ $value }}</span></p>
+                </div>
+              @endif
+            @endforeach
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Page Content -->
+  <!-- Items Table Section -->
   <div class="content">
     <div class="block block-rounded">
       <div class="block-content block-content-full">
-        <x-alert /> {{-- errors And Alerts --}}
-        <!--
-            DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/be_tables_datatables.min.js
-            which was auto compiled from _js/pages/be_tables_datatables.js
-        -->
-        <table class="table table-responsive-xl table-bordered table-striped table-vcenter js-dataTable-full">
-          <thead>
-            <tr>
-              <th class="text-center" style="width: 60px;">ID</th>
-              <th class="text-center">{{ trans('main_trans.productTitle') }}</th>
-              <th class="text-center">{{ trans('main_trans.price') }}</th>
-              <th class="text-center">{{ trans('main_trans.quantity') }}</th>
-              <th class="text-center">{{ trans('main_trans.total') }}</th>
-            </tr>
-          </thead>
-          <tbody id="tbody">
-            <tr>
-              <td class="text-center">{{ $deliveryOrdersItems->id }}</td>
-              <td class="font-w600 font-size-sm">{{ $deliveryOrdersItems->productTitle }}</td>
-              <td class="font-w600 font-size-sm">{{ $deliveryOrdersItems->price }}</td>
-              <td class="font-w600 font-size-sm">{{ $deliveryOrdersItems->quantity ? $deliveryOrdersItems->quantity : '' }}</td>
-              <td class="font-w600 font-size-sm">{{ $deliveryOrdersItems->price * $deliveryOrdersItems->quantity }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <x-alert /> <!-- Display errors and alerts -->
+        <h3 class="font-w700 mb-4 text-center">{{ trans('main_trans.order_items') }}</h3>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-vcenter">
+            <thead class="thead-dark">
+              <tr>
+                @foreach ([
+                  'ID' => '60px',
+                  'productTitle' => null,
+                  'price' => null,
+                  'quantity' => null,
+                  'total' => null
+                ] as $key => $width)
+                  <th class="text-center" style="width: {{ $width }};">{{ trans("main_trans.$key") }}</th>
+                @endforeach
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                @foreach ([
+                  $deliveryOrdersItems->id,
+                  $deliveryOrdersItems->productTitle,
+                  $deliveryOrdersItems->price,
+                  $deliveryOrdersItems->quantity ?: '',
+                  $deliveryOrdersItems->price * $deliveryOrdersItems->quantity
+                ] as $value)
+                  <td class="text-center font-w600">{{ $value }}</td>
+                @endforeach
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
+  <style>
+    .content {
+      padding: 20px;
+    }
+    .bg-light {
+      background-color: #f8f9fa;
+    }
+    .table th, .table td {
+      vertical-align: middle;
+    }
+    .thead-dark th {
+      background-color: #343a40;
+      color: #fff;
+    }
+    .text-secondary {
+      color: #6c757d;
+    }
+  </style>
+
 </main>
 @endsection
-

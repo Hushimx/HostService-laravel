@@ -39,38 +39,26 @@
         <div class="modal fade" id="modal-edit-price{{$service->service->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
           <div class="modal-dialog modal-md modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="block block-rounded block-themed block-transparent mb-0">
-                <div class="block-header bg-primary-dark">
-                  <h3 class="block-title">{{ trans('main_trans.edit-price') }}</h3>
-                  <div class="block-options">
-                    <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                      <i class="fa fa-fw fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="block-content font-size-sm">
-                  {{-- start form --}}
-                  <form action="" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <div class="row">
-                      <div class="col-lg-12 col-xl-12">
-                        <div class="form-group text-center form-edit-price">
+              <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">{{ trans('main_trans.edit-price') }} (#{{ $loop->iteration }})</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" action="{{ route('services.update', $service->id) }}">
+                  @csrf
+                  @method('PUT')
+                  <div id="services-inputs">
+                    <div class="mb-3 border p-3 rounded">
+                      <label for="title-{{ $loop->iteration }}" class="form-label">{{ trans('main_trans.service_title') }}</label>
+                      <input type="text" name="services[{{ $loop->iteration }}][title]" id="title-{{ $loop->iteration }}" class="form-control mb-2" placeholder="{{ trans('main_trans.enter_title') }}">
 
-                        </div>
-                      </div>
-                      <div class="block-content text-center border-top">
-                        <div class="form-group">
-                          <button type="submit" class="btn btn-md btn-primary">
-                            <i class="fa fa-fw fa-check mr-1"></i> {{ trans('grades.save') }}
-                          </button>
-                          <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">{{ trans('grades.cancel') }}</button>
-                        </div>
-                      </div>
+                      <label for="price-{{ $loop->iteration }}" class="form-label">{{ trans('main_trans.service_price') }}</label>
+                      <input type="number" name="services[{{ $loop->iteration }}][price]" id="price-{{ $loop->iteration }}" class="form-control" placeholder="{{ trans('main_trans.enter_price') }}">
                     </div>
-                    </form>
-                    {{-- End form --}}
                   </div>
+                  <button type="button" id="add-service-btn" class="btn btn-primary mb-3">{{ trans('main_trans.add_service') }}</button>
+                  <button type="submit" class="btn btn-success">{{ trans('main_trans.save') }}</button>
+                </form>
               </div>
             </div>
           </div>
@@ -79,6 +67,48 @@
       @endforeach
     </tbody>
   </table>
-  <!-- END Dynamic Table Full -->
   {{ $vendorServices->links() }}
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const addServiceBtn = document.getElementById('add-service-btn');
+    const servicesInputs = document.getElementById('services-inputs');
+
+    // Add new service input fields dynamically
+    addServiceBtn.addEventListener('click', function () {
+      const index = servicesInputs.children.length;
+
+      const serviceDiv = document.createElement('div');
+      serviceDiv.classList.add('p-3', 'mb-3', 'border', 'rounded');
+
+      const titleLabel = document.createElement('label');
+      titleLabel.setAttribute('for', `title-${index}`);
+      titleLabel.textContent = '{{ trans('main_trans.service_title') }}';
+      serviceDiv.appendChild(titleLabel);
+
+      const titleInput = document.createElement('input');
+      titleInput.setAttribute('type', 'text');
+      titleInput.setAttribute('name', `services[${index}][title]`);
+      titleInput.setAttribute('id', `title-${index}`);
+      titleInput.setAttribute('class', 'form-control mb-2');
+      titleInput.setAttribute('placeholder', '{{ trans('main_trans.enter_title') }}');
+      serviceDiv.appendChild(titleInput);
+
+      const priceLabel = document.createElement('label');
+      priceLabel.setAttribute('for', `price-${index}`);
+      priceLabel.textContent = '{{ trans('main_trans.service_price') }}';
+      serviceDiv.appendChild(priceLabel);
+
+      const priceInput = document.createElement('input');
+      priceInput.setAttribute('type', 'number');
+      priceInput.setAttribute('name', `services[${index}][price]`);
+      priceInput.setAttribute('id', `price-${index}`);
+      priceInput.setAttribute('class', 'form-control');
+      priceInput.setAttribute('placeholder', '{{ trans('main_trans.enter_price') }}');
+      serviceDiv.appendChild(priceInput);
+
+      servicesInputs.appendChild(serviceDiv);
+    });
+  });
+</script>

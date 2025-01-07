@@ -14,7 +14,7 @@ class ServiceOrdersController extends Controller
     $vendorId = Auth::guard('vendors')->user()->id;
 
     $vendorServiceOrders = ServiceOrder::with(['city', 'service'])->where('vendorId', $vendorId)->paginate(10);
-
+    
     return view('avendor.pages.service-orders.index', compact('vendorServiceOrders'));
   }
 
