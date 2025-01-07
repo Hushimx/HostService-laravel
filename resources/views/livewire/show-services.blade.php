@@ -55,9 +55,7 @@
                     @method('DELETE')
                     <div class="row">
                       <div class="col-lg-12 col-xl-12">
-                        <div class="form-group text-center form-edit-price">
-
-                        </div>
+                        <div class="form-group text-center form-edit-price"></div>
                       </div>
                       <div class="block-content text-center border-top">
                         <div class="form-group">
@@ -68,9 +66,9 @@
                         </div>
                       </div>
                     </div>
-                    </form>
-                    {{-- End form --}}
-                  </div>
+                  </form>
+                  {{-- End form --}}
+                </div>
               </div>
             </div>
           </div>
