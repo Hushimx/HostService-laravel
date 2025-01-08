@@ -45,16 +45,13 @@ class ProductController extends Controller
 
 
 
-        // Save the New Record in question table
         $newProduct->name = $validatedData['name'];
         $newProduct->price = $validatedData['price'];
         if ($request->categoryId) {
           $newProduct->categoryId = $validatedData['categoryId'];
         }
         $newProduct->updatedAt = now();
-        $newProduct->vendorId = Auth::guard('vendors')->user()->id;
         $newProduct->storeId = $validatedData['storeId'];
-        $newProduct->cityId = Auth::guard('vendors')->user()->cityId;
 
         if ($newProduct->save()) {
             return redirect()->route('products.index')->with('success', trans('action.data_save_success'));
@@ -102,9 +99,7 @@ class ProductController extends Controller
           $product->categoryId = $validatedData['categoryId'];
         }
         $product->updatedAt = now();
-        $product->vendorId = Auth::guard('vendors')->user()->id;
         $product->storeId = $validatedData['storeId'];
-        $product->cityId = Auth::guard('vendors')->user()->cityId;
 
         if ($product->save()) {
             return redirect()->route('products.index')->with('success', trans('action.data_update_success'));
