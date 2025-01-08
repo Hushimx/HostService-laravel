@@ -2,6 +2,10 @@
   direction: rtl;
 }
 
+body {
+  color: #4a148c;
+}
+
 #sidebar {
   background-color: #f9e9f9 !important;
   /* Light pink background */
@@ -163,3 +167,17 @@
 .text-muted {
   color: #6c757d !important;
 }
+
+#page-header {
+  background-color: #4a148c;
+}
+
+.bg-body-light {
+  background-color: #f4d9f4 !important;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  color: #4a148c;
+}
+
+
