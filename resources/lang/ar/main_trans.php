@@ -26,6 +26,7 @@ return [
   'View all orders' => 'عرض كل الطلبات',
   'View all services Orders' => 'عرض كل طلبات الخدمات',
   'Profit' => 'الارباح',
+  'Profit' => 'الارباح',
 
   // delivery Orders section
   'delivery-orders' => 'طلبات التوصيل',
@@ -55,8 +56,8 @@ return [
   'serviceName' => 'اسم الخدمة',
   'serviceDesc' => 'وصف الخدمة',
   'edit-price' => 'تعديل السعر',
-  '' => '',
-  '' => '',
+  'edit-desc' => 'تعديل الوصف',
+  'description_ar' => 'الوصف بالعربية',
 
   // service orders
   'service-orders' => 'الخدمات المطلوبة',

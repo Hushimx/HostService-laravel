@@ -44,7 +44,7 @@ class ShowServices extends Component
       });
     }
 
-    $this->searchResults = $query->paginate(10); // Paginate results
+    $this->searchResults = $query->orderBy('id', 'desc')->paginate(10); // Paginate results
   }
 
 
@@ -52,7 +52,7 @@ class ShowServices extends Component
   {
 
     $vendorId = Auth::guard('vendors')->user()->id;
-    $vendorServices = Service::with(['city', 'service'])->where('vendorId', $vendorId)->paginate(10);
+    $vendorServices = Service::with(['city', 'service'])->where('vendorId', $vendorId)->orderBy('id', 'desc')->paginate(10);
 
     // Use searchResults if available, otherwise load default products
     return $this->searchResults ?: $vendorServices;

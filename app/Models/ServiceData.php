@@ -28,8 +28,4 @@ class ServiceData extends Model
     return $this->belongsTo(Room::class);
   }
 
-    // public function client()
-  // {
-  //     return $this->belongsTo(Client::class);
-  // }
 }
