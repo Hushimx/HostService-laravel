@@ -47,7 +47,11 @@
             <span>{{ \Carbon\Carbon::parse($store->createdAt)->format('M d Y') }}</span>
           </td>
           <td class="font-w600 font-size-sm text-center">
-            <a class="btn btn-alt-primary" href="{{ route('stores.edit', $store->id) }}">
+            <a class="btn btn-alt-info mb-2 w-100" href="{{ route('products.store.index', $store->id) }}">
+              <i class="fa fa-eye mr-1"></i>
+              <span>Products</span>
+            </a>
+            <a class="btn btn-alt-primary w-100" href="{{ route('stores.edit', $store->id) }}">
               <i class="fa fa-edit mr-1"></i>
               <span>Edit</span>
             </a>

@@ -14,7 +14,7 @@ class Store extends Model
 
   protected $table = 'stores';
 
-  protected $fillable = ['name', 'imageUrl', 'bannerUrl', 'description', 'slug', 'type'];
+  protected $fillable = ['name', 'imageUrl', 'bannerUrl', 'description', 'slug', 'type', 'vendorId'];
 
   const CREATED_AT = 'createdAt'; // If your `created_at` column is also camelCase
   const UPDATED_AT = 'updatedAt';

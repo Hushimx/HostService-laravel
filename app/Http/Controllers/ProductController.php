@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('products.create');
+      return view('products.create');
     }
 
     public function store(Request $request)
@@ -136,5 +136,16 @@ class ProductController extends Controller
             // If an error occurs, redirect back with an error message
             return redirect()->route('products.index', ['page' => $request->page])->with('error', $e->getMessage());
           }
+    }
+
+    public function storeProducts($id) {
+      $storeId = $id;
+      $products = Product::where('storeId', $storeId)->get();
+
+      $vendorStores = Auth::guard('vendors')->user()->stores; // for select box
+
+      $productCategories = ProductCategory::all(); // for select boxe
+
+      return view('avendor.pages.stores.products', compact('productCategories', 'vendorStores', 'storeId'));
     }
 }
