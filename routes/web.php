@@ -102,6 +102,9 @@ function(){
     // profile edit
     Route::view('edit/profile', 'avendor.profile-edit')->name('profile.edit');
 
+    // products by storeId only
+    Route::get('products/bystore/{id}', [ProductController::class, 'storeProducts'])->name('products.store.index');
+
     // products Controller
     Route::resource('products', ProductController::class);
 
