@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -142,7 +143,18 @@ class ProductController extends Controller
       $storeId = $id;
       $products = Product::where('storeId', $storeId)->get();
 
-      $vendorStores = Auth::guard('vendors')->user()->stores; // for select box
+      $vendorStores = Store::where('vendorId', Auth::guard('vendors')->user()->id)->get();
+
+      // Collect the store IDs
+      $allVendstores = [];
+      foreach ($vendorStores as $store) {
+        $allVendstores[] = $store->id;
+      }
+
+      // Check if $id exists in $allVendstores
+      if (!in_array($id, $allVendstores)) {
+        return redirect()->route('products.index')->with('error', 'You do not have access to this store.');
+      }
 
       $productCategories = ProductCategory::all(); // for select boxe
 

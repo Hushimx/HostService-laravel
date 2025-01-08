@@ -19,7 +19,7 @@
           <i class="fa fa-circle-notch text-primary"></i>
         </span>
         <span class="smini-hide font-size-h5 tracking-wider">
-          Mr<span class="font-w400">Hashim</span>
+          Host <span class="font-w400">Service</span>
         </span>
       </a>
 
