@@ -12,7 +12,7 @@ class DeliveryOrders extends Component
   use WithPagination; // Enables Livewire pagination
 
   public $searchKey;
-  public $searchResults;
+  protected $searchResults;
 
   protected $paginationTheme = 'bootstrap';
   protected $queryString = ['searchKey'];
@@ -30,13 +30,16 @@ class DeliveryOrders extends Component
 
       $vendorId = Auth::guard('vendors')->user()->id;
 
-      $query = DeliveryOrder::with(['city'])->where('vendorId', $vendorId);
+      $query = DeliveryOrder::with(['city', 'store'])->where('vendorId', $vendorId);
 
-      // if ($this->searchKey) {
-      //     $query->where('clientName', 'like', '%' . $this->searchKey . '%'); // Example search by 'name'
-      //     $query->where('clientNumber', 'like', '%' . $this->searchKey . '%'); // Example search by 'name'
-      //     $query->where('hotelName', 'like', '%' . $this->searchKey . '%'); // Example search by 'name'
-      // }
+      if ($this->searchKey) {
+        $query->where(function ($q) {
+          $q->whereRaw('LOWER(delivery_orders."clientName") LIKE ?', ['%' . strtolower($this->searchKey) . '%'])
+            ->orWhereRaw('LOWER(delivery_orders."clientNumber") LIKE ?', ['%' . strtolower($this->searchKey) . '%'])
+            ->orWhereRaw('LOWER(delivery_orders."roomNumber") LIKE ?', ['%' . strtolower($this->searchKey) . '%'])
+            ->orWhereRaw('LOWER(delivery_orders."hotelName") LIKE ?', ['%' . strtolower($this->searchKey) . '%']);
+        });
+      }
 
       // Store paginated results in the searchResults property
       $this->searchResults = $query->groupBy('id')->paginate(10);
