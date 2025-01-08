@@ -12,7 +12,7 @@ class Product extends Model
 
   protected $table = 'products';
 
-  protected $fillable = ['name', 'price', 'categoryId', 'aproved', 'image', 'vendorId', 'cityId', 'storeId'];
+  protected $fillable = ['name', 'price', 'categoryId', 'aproved', 'image', 'cityId', 'storeId'];
 
   // Override the updated_at column name
   const UPDATED_AT = 'updatedAt';

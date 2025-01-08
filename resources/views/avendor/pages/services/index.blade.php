@@ -1,11 +1,14 @@
 @extends('avendor.dashboard.includes.master')
 
 @section('css_adds')
-    <style>
-        #product_image_preview {
-            max-height: 200px;
-        }
-    </style>
+  {{-- start Editor Plugn  --}}
+  <link rel="stylesheet" href="{{ asset('dashboard/assets/js/plugins/summernote/summernote-bs4.css') }} ">
+  <link rel="stylesheet" href="{{ asset('dashboard/assets/js/plugins/simplemde/simplemde.min.css') }} ">
+  <style>
+    #product_image_preview {
+        max-height: 200px;
+    }
+  </style>
 @endsection
 
 @section('content')
@@ -37,6 +40,7 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('dashboard/assets/js/plugins/summernote/summernote-bs4.min.js') }}"></script>
   <script>
     $(document).ready(function() {
       $('.mag-img').magnificPopup({type:'image'});
@@ -75,57 +79,7 @@
 
   </script>
 
-  {{-- @if ($service)
 
-    @php
-      $servicesData = json_decode($service->ServicesData); // Decode JSON to array
-    @endphp
-
-    @if ($servicesData)
-      <label for="serviceData">{{ $servicesData }}</label>
-      <input id="serviceData" class="form-control" type="text" placeholder="price">
-    @endif
-    <script>
-      // Select all forms with the class 'form-edit-price'
-      let forms = document.querySelectorAll('.form-edit-price');
-
-      // Pass PHP data as JSON
-      let codedData = @json($servicesData);
-      let data = JSON.parse(codedData);
-
-      // Check if forms and data are valid
-      if (forms.length > 0 && Array.isArray(data)) {
-        // Loop through each form
-        forms.forEach((form) => {
-          // Clear the form content before adding new inputs
-          form.innerHTML = '';
-
-          // Loop through the data and dynamically add inputs
-          data.forEach((item, index) => {
-            // Create a label and input for each item
-            let label = document.createElement('label');
-            label.textContent = `${item.title}`;
-            label.setAttribute('for', `price-${index}`);
-            label.setAttribute('class', 'text-left d-block'); // Margin for spacing
-
-            let input = document.createElement('input');
-            input.setAttribute('id', `price-${index}`);
-            input.setAttribute('class', 'form-control mb-3');
-            input.setAttribute('type', 'text');
-            input.setAttribute('value', item.price);
-            input.setAttribute('placeholder', 'Enter price');
-
-            // Append the label and input to the current form
-            form.appendChild(label);
-            form.appendChild(input);
-          });
-        });
-      } else {
-        console.error('No forms found or data is invalid.');
-      }
-    </script>
-
-  @endif --}}
 
 
 @endsection

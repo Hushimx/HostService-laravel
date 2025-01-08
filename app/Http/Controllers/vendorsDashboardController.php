@@ -13,6 +13,8 @@ class vendorsDashboardController extends Controller
   //
   public function index() {
     $vendorId = Auth::guard('vendors')->user()->id;
+    $user = Vendor::with('city')->find($vendorId);
+    $currencyCode = $user->city->country->currency;
 
     $deliveryOrders = DeliveryOrder::with(['city', 'store'])
                       ->where('vendorId', $vendorId)
@@ -25,7 +27,6 @@ class vendorsDashboardController extends Controller
     foreach ($deliveryOrders as $del_order) {
       $totalDeleiveryProfit = (int)$del_order->total + $totalDeleiveryProfit;
     }
-
 
     $serviceOrders = ServiceOrder::where('vendorId', $vendorId)->get();
 
@@ -40,8 +41,6 @@ class vendorsDashboardController extends Controller
 
     $totalProfit = $totalServiceOrders + $totalDeleiveryProfit;
 
-    $user = Vendor::with('city')->find($vendorId);
-    $currencyCode = $user->city->country->currency;
     return view('avendor.dashboard', compact('deliveryOrders', 'serviceOrders', 'totalProfit', 'currencyCode'));
   }
 }

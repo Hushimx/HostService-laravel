@@ -38,10 +38,11 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" id="css-main" href="{{asset('dashboard/assets/css/oneui.min.css')}}">
 
+        <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+        <link rel="stylesheet" id="css-theme" href="{{asset('dashboard/assets/css/themes/amethyst.min.css')}}">
         <!-- Custom Styles -->
         <link rel="stylesheet" href="{{asset('assests/css/customStyles.css')}}">
-        <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-        <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css"> -->
+
         @livewireStyles
         @yield('css_adds')
         <!-- END Stylesheets -->

@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
   protected $table = 'city_service_vendors';
-  protected $fillable = ['ServicesData'];
+  protected $fillable = ['ServicesData', 'description', 'description_ar'];
+
+  const CREATED_AT = 'createdAt'; // If your `created_at` column is also camelCase
+  const UPDATED_AT = 'updatedAt';
 
   public function service()
   {

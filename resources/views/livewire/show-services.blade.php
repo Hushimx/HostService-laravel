@@ -29,41 +29,10 @@
           <td class="font-w600 font-size-sm text-center">{{ $service->service->description }}</td>
           <td>
             <div class="d-flex flex-column justify-content-start align-items-stretch">
-              <button type="button" class="btn btn-sm btn-primary d-flex align-items-baseline" data-toggle="modal" data-target="#modal-edit-price{{$service->service->id}}">
-                <i class="fa fa-edit fa-fw mr-1"></i>{{ trans('students.edit') }}
-              </button>
+              <a class="btn btn-sm btn-primary d-flex align-items-baseline" href="{{ route('service.edit.description', $service->id) }}"><i class="fa fa-edit fa-fw mr-1"></i>{{ trans('students.edit') }}</a>
             </div>
           </td>
         </tr>
-        <!-- start edit modal -->
-        <div class="modal fade" id="modal-edit-price{{$service->service->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
-          <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title">{{ trans('main_trans.edit-price') }} (#{{ $loop->iteration }})</h5>
-                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form method="POST" action="{{ route('services.update', $service->id) }}">
-                  @csrf
-                  @method('PUT')
-                  <div id="services-inputs">
-                    <div class="mb-3 border p-3 rounded">
-                      <label for="title-{{ $loop->iteration }}" class="form-label">{{ trans('main_trans.service_title') }}</label>
-                      <input type="text" name="services[{{ $loop->iteration }}][title]" id="title-{{ $loop->iteration }}" class="form-control mb-2" placeholder="{{ trans('main_trans.enter_title') }}">
-
-                      <label for="price-{{ $loop->iteration }}" class="form-label">{{ trans('main_trans.service_price') }}</label>
-                      <input type="number" name="services[{{ $loop->iteration }}][price]" id="price-{{ $loop->iteration }}" class="form-control" placeholder="{{ trans('main_trans.enter_price') }}">
-                    </div>
-                  </div>
-                  <button type="button" id="add-service-btn" class="btn btn-primary mb-3">{{ trans('main_trans.add_service') }}</button>
-                  <button type="submit" class="btn btn-success">{{ trans('main_trans.save') }}</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- END edit price modal -->
       @endforeach
     </tbody>
   </table>
