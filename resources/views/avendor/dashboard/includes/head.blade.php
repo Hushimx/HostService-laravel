@@ -90,5 +90,5 @@
         @if (App::getLocale() == 'en')
             <?php $lang_theme = 'block-header-default'; ?>
         @else
-            <?php $lang_theme = 'block-header-rtl'; ?>
+            <?php $lang_theme = 'block-header-rtl text-right dir-rtl'; ?>
         @endif

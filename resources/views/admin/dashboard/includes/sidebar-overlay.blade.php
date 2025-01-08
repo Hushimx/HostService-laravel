@@ -1,4 +1,4 @@
-<!-- Side Overlay-->
+{{-- <!-- Side Overlay-->
 <aside id="side-overlay">
     <!-- Side Header -->
     <div class="content-header border-bottom">
@@ -428,4 +428,4 @@
     </div>
     <!-- END Side Content -->
 </aside>
-<!-- END Side Overlay -->
+<!-- END Side Overlay --> --}}
