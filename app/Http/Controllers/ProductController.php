@@ -43,10 +43,14 @@ class ProductController extends Controller
           $newProduct->image = $path;
         }
 
+
+
         // Save the New Record in question table
         $newProduct->name = $validatedData['name'];
         $newProduct->price = $validatedData['price'];
-        $newProduct->categoryId = $validatedData['categoryId'];
+        if ($request->categoryId) {
+          $newProduct->categoryId = $validatedData['categoryId'];
+        }
         $newProduct->updatedAt = now();
         $newProduct->vendorId = Auth::guard('vendors')->user()->id;
         $newProduct->storeId = $validatedData['storeId'];
@@ -94,7 +98,9 @@ class ProductController extends Controller
         // Save the New Record in question table
         $product->name = $validatedData['name'];
         $product->price = $validatedData['price'];
-        $product->categoryId = $validatedData['categoryId'];
+        if ($request->categoryId) {
+          $product->categoryId = $validatedData['categoryId'];
+        }
         $product->updatedAt = now();
         $product->vendorId = Auth::guard('vendors')->user()->id;
         $product->storeId = $validatedData['storeId'];
