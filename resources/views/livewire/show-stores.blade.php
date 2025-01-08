@@ -42,11 +42,6 @@
               <a href="{{ url('storage/no-image.png') }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
                 <img class="img-thumb d-block mx-auto" src="{{ url('storage/no-image.png') }}" alt="{{ $store->name }}" width="300px">
               </a>
-              @endif
-              @else
-              <a href="{{ url('storage/no-image.png') }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
-                <img class="img-thumb d-block mx-auto" src="{{ url('storage/no-image.png') }}" alt="{{ $store->name }}" width="300px">
-              </a>
 
               @endif
             </td>
