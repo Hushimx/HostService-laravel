@@ -28,6 +28,7 @@
         <tr>
           <td class="text-center">{{ $loop->iteration }}</td>
           <td class="font-w600 font-size-sm text-center">
+            @if($store->imageUrl)
             @if (Storage::disk('store_images')->exists($store->imageUrl))
               <a href="{{ url('storage/store_images/'.$store->imageUrl) }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
                 <img class="img-thumb d-block mx-auto" src="{{ url('storage/store_images/'.$store->imageUrl) }}" alt="{{ $store->name }}" width="300px">
@@ -36,8 +37,14 @@
               <a href="{{ url('storage/no-image.png') }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
                 <img class="img-thumb d-block mx-auto" src="{{ url('storage/no-image.png') }}" alt="{{ $store->name }}" width="300px">
               </a>
-            @endif
-          </td>
+              @endif
+              @else
+              <a href="{{ url('storage/no-image.png') }}" class="img-link img-link-zoom-in d-block mx-auto mag-img">
+                <img class="img-thumb d-block mx-auto" src="{{ url('storage/no-image.png') }}" alt="{{ $store->name }}" width="300px">
+              </a>
+
+              @endif
+            </td>
           <td class="font-w600 font-size-sm text-center">{{ $store->name }}</td>
           <td class="font-w600 font-size-sm text-center">{{ $store->description ? $store->description : 'No description to show' }}</td>
           <td class="font-w600 font-size-sm text-center">{{ $store->section->name }}</td>
