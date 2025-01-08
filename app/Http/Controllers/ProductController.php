@@ -44,9 +44,11 @@ class ProductController extends Controller
         }
 
         // Save the New Record in question table
+        if ($request->categoryId) {
+          $newProduct->categoryId = $validatedData['categoryId'];
+        }
         $newProduct->name = $validatedData['name'];
         $newProduct->price = $validatedData['price'];
-        $newProduct->categoryId = $validatedData['categoryId'];
         $newProduct->updatedAt = now();
         $newProduct->vendorId = Auth::guard('vendors')->user()->id;
         $newProduct->storeId = $validatedData['storeId'];
