@@ -43,22 +43,39 @@
           <h2 class="content-heading mb-4">{{ $service->name }}</h2>
 
           <div class="row">
+            {{-- address --}}
+            <div class="col-xl-6 mb-3">
+              <label for="address">{{ trans('main_trans.Address') }}</label>
+              <input id="address" type="text" name="address" class="form-control" value="{{ $service->address }}">
+              @error('address')
+                <div class="alert alert-danger my-2">{{ $message }}</div>
+              @enderror
+            </div>
+
+            {{-- locationUrl --}}
+            <div class="col-xl-6 mb-3">
+              <label for="locationUrl">{{ trans('main_trans.Location Url') }}</label>
+              <input id="locationUrl" type="text" name="locationUrl" class="form-control" value="{{ $service->locationUrl }}">
+              @error('locationUrl')
+                <div class="alert alert-danger my-2">{{ $message }}</div>
+              @enderror
+            </div>
+
             {{-- description --}}
             <div class="col-lg-6 mb-4">
               <label for="desc">{{ trans('main_trans.description') }}</label>
               <textarea class="form-control form-control-alt js-summernote"
                 name="description" id="desc" cols="30" rows="4">{{ $service->description }}</textarea>
-
               @error('description')
                 <div class="alert alert-danger my-2">{{ $message }}</div>
               @enderror
             </div>
+
             {{-- description_ar --}}
             <div class="col-lg-6 mb-4">
               <label for="description_ar">{{ trans('main_trans.description_ar') }}</label>
               <textarea class="form-control form-control-alt js-summernote"
                 name="description_ar" id="description_ar" cols="30" rows="4">{{ $service->description_ar }}</textarea>
-
               @error('description_ar')
                 <div class="alert alert-danger my-2">{{ $message }}</div>
               @enderror

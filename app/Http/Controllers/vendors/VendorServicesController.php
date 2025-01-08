@@ -33,6 +33,8 @@ class VendorServicesController extends Controller
     $validate = validator([
       'description' => 'required|string|max:255',
       'description_ar' => 'required|string|max:255',
+      'locationUrl' => 'nullable|string|max:255',
+      'address' => 'nullable|string|max:255',
     ]);
 
     // return $id;
@@ -41,6 +43,8 @@ class VendorServicesController extends Controller
     if ($service) {
       $service->description = $request->description; // Update description
       $service->description_ar = $request->description_ar; // Update description_ar
+      $service->address = $request->address; // Update description_ar
+      $service->locationUrl = $request->locationUrl; // Update description_ar
       $service->save();
 
       return redirect()->route('services.index')->with('success', trans('action.data_update_success'));
