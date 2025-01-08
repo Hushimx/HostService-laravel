@@ -1,5 +1,6 @@
 @extends('avendor.dashboard.includes.master')
 
+
 @section('content')
 <!-- Main Container -->
 <main id="main-container">
@@ -27,4 +28,5 @@
 
 </main>
 @endsection
+
 

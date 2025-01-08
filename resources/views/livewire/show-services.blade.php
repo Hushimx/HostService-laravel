@@ -29,53 +29,10 @@
           <td class="font-w600 font-size-sm text-center">{{ $service->service->description }}</td>
           <td>
             <div class="d-flex flex-column justify-content-start align-items-stretch">
-              <button type="button" class="btn btn-sm btn-primary d-flex align-items-baseline" data-toggle="modal" data-target="#modal-edit-price{{$service->service->id}}">
-                <i class="fa fa-edit fa-fw mr-1"></i>{{ trans('students.edit') }}
-              </button>
+              <a class="btn btn-sm btn-primary d-flex align-items-baseline" href="{{ route('service.edit.description', $service->id) }}"><i class="fa fa-edit fa-fw mr-1"></i>{{ trans('students.edit') }}</a>
             </div>
           </td>
         </tr>
-        <!-- start edit modal -->
-        <div class="modal fade" id="modal-edit-price{{$service->service->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-block-large" aria-hidden="true">
-          <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="block block-rounded block-themed block-transparent mb-0">
-                <div class="block-header bg-primary-dark">
-                  <h3 class="block-title">{{ trans('main_trans.edit-price') }}</h3>
-                  <div class="block-options">
-                    <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                      <i class="fa fa-fw fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="block-content font-size-sm">
-                  {{-- start form --}}
-                  <form action="" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <div class="row">
-                      <div class="col-lg-12 col-xl-12">
-                        <div class="form-group text-center form-edit-price">
-
-                        </div>
-                      </div>
-                      <div class="block-content text-center border-top">
-                        <div class="form-group">
-                          <button type="submit" class="btn btn-md btn-primary">
-                            <i class="fa fa-fw fa-check mr-1"></i> {{ trans('grades.save') }}
-                          </button>
-                          <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">{{ trans('grades.cancel') }}</button>
-                        </div>
-                      </div>
-                    </div>
-                    </form>
-                    {{-- End form --}}
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- END edit price modal -->
       @endforeach
     </tbody>
   </table>

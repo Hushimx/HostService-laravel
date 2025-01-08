@@ -88,6 +88,8 @@ function(){
     // vendor services
     Route::get('vendor-services', [VendorServicesController::class, 'index'])->name('services.index');
     Route::get('vendor-services/{serviceId}', [VendorServicesController::class, 'edit'])->name('services.edit'); // to edit the price
+    Route::get('vendor-services/edit/{id}', [VendorServicesController::class, 'editDesc'])->name('service.edit.description');
+    Route::put('vendor-services/update/{id}', [VendorServicesController::class, 'updateDesc'])->name('service.update.description');
 
     // service orders
     Route::get('service-orders', [ServiceOrdersController::class, 'index'])->name('service.orders.index');

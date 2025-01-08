@@ -25,6 +25,7 @@ return [
   'View all orders' => 'View all orders',
   'View all services Orders' => 'View all services orders',
   'Profit' => 'Profit',
+  'Profit' => 'Profit',
 
   // delivery Orders section
   'delivery-orders' => 'Delivery Orders',
@@ -53,6 +54,8 @@ return [
   'serviceName' => 'Service Name',
   'serviceDesc' => 'Service Description',
   'edit-price' => 'Edit Price',
+  'edit-desc' => 'Edit Description',
+  'description_ar' => 'Description Arabic',
 
   // service orders
   'service-orders' => 'Service Orders',
